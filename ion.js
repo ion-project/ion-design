@@ -337,21 +337,6 @@ IonFramework.fn.createEvent = function(name, parameters){
     return new CustomEvent(name, parameters);
 }
 
-IonFramework.fn.copyToClipboard = function(event){
-    var selection,
-        range;
-
-    selection = window.getSelection();
-
-    range = document.createRange();
-    range.selectNodeContents(event.target);
-
-    selection.removeAllRanges();
-    selection.addRange(range);
-
-    document.execCommand("copy");
-}
-
 IonFramework.fn.run = function(){
     var $element;
 
@@ -1130,7 +1115,25 @@ IonSelector.fn.emit = function(event){
     this.each(function(){
         this.dispatchEvent(event);
     });
-};
+}
+
+IonSelector.fn.copyToClipboard = function(){
+    var $element = this[0],
+        selection,
+        range;
+
+    if($element){
+        selection = window.getSelection();
+
+        range = document.createRange();
+        range.selectNodeContents($element);
+
+        selection.removeAllRanges();
+        selection.addRange(range);
+
+        document.execCommand("copy");
+    }
+}
 
 Ion.run();
 

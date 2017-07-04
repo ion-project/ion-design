@@ -3,7 +3,7 @@
 
 var Ion = new IonFramework();
 
-var hideOverlay, closeDialog, responsiveDialog, newToast, otherToast, hideToast, closeMenu, wave, ripplePressed, endRipple, hideRipple, endFlatRipple, hideFlatRipple, expansion, hideExpansionPanel, getIndicator, indicatorPosition, refreshIndicator, tabChange, tabContent, lastMousemoveTarget, endTooltip, hideTooltip;
+var hideOverlay, closeDialog, responsiveDialog, newToast, otherToast, hideToast, closeMenu, wave, ripplePressed, endRipple, hideRipple, endFlatRipple, hideFlatRipple, expansion, hideExpansionPanel, getIndicator, indicatorPosition, refreshIndicator, tabChange, tabContent, lastMousemoveTarget, endTooltip, hideTooltip, createChip, chipAutocomplete, chipInput, chipSelect, chipClick, chipList;
 
 function IonFramework(){
     
@@ -36,6 +36,30 @@ IonFramework.fn.isUnique = function(term, array){
     }
 
     return unique;
+}
+
+IonFramework.fn.filter = function(array, key, filter){
+    var results = [];
+
+    if(filter != ""){
+        for(var i = 0; i < array.length; i = i + 1){
+            if(Array.isArray(key)){
+                for(var j = 0; j < key.length; j = j + 1){
+                    if(array[i][key[j]] && array[i][key[j]].toLowerCase().indexOf(filter.toLowerCase()) > -1){
+                        results.push(array[i]);
+                        break;
+                    }
+                }
+            }
+            else{
+                if(array[i][key] && array[i][key].toLowerCase().indexOf(filter.toLowerCase()) > -1){
+                    results.push(array[i]);
+                }
+            }
+        }
+    }
+
+    return results;
 }
 
 hideOverlay = function(event){
@@ -772,9 +796,61 @@ IonSelector.fn.removeAttr = function(attributes){
     return this;
 }
 
+IonSelector.fn.html = function(content){
+    if(typeof content === "undefined"){
+        if(this[0]){
+            return this[0].innerHTML;
+        }
+    }
+    else{
+        this.each(function(){
+            this.innerHTML = content;
+        });
+    }
+
+    return this;
+}
+
+IonSelector.fn.value = function(value){
+    if(typeof value === "undefined"){
+        if(this[0]){
+            return this[0].value;
+        }
+    }
+    else{
+        this.each(function(){
+            this.value = value;
+        });
+    }
+
+    return this;
+}
+
 IonSelector.fn.append = function($element){
     this.each(function(){
         this.appendChild($element);
+    });
+}
+
+IonSelector.fn.prepend = function($element){
+    this.each(function(){
+        this.insertBefore($element, this.firstChild);
+    });
+}
+
+IonSelector.fn.insertBefore = function($element){
+    this.each(function(){
+        if(this.parentNode){
+            this.parentNode.insertBefore($element, this);
+        }
+    });
+}
+
+IonSelector.fn.insertAfter = function($element){
+    this.each(function(){
+        if(this.parentNode){
+            this.parentNode.insertBefore($element, this.nextSibling);
+        }
     });
 }
 
@@ -1133,6 +1209,296 @@ IonSelector.fn.copyToClipboard = function(){
 
         document.execCommand("copy");
     }
+}
+
+createChip = function($chips, data){
+    var $chip,
+        $content,
+        $input,
+        chipImg,
+        chipText,
+        chipDeletable,
+        addEvent = Ion.createEvent("chip.add");;
+
+    $chip = document.createElement("DIV");
+    $chip.className = "chip";
+
+    if(data.img){
+        chipImg = document.createElement("IMG");
+        chipImg.src = data.img;
+        $chip.appendChild(chipImg);
+    }
+    if(data.text){
+        chipText = document.createElement("SPAN");
+        chipText.innerHTML = data.text;
+        $chip.appendChild(chipText);
+    }
+    if(data.subtitle){
+        $chip.setAttribute("data-subtitle", data.subtitle);
+    }
+    if(data.deletable){
+        chipDeletable = document.createElement("I");
+        chipDeletable.className = "icon";
+        chipDeletable.innerHTML = "&#xE5CD;";
+        $chip.appendChild(chipDeletable);
+    }
+
+    $content = $chips.find(".content")[0];
+    $input = $chips.find("input")[0];
+
+    $content.insertBefore($chip, $input);
+
+    addEvent.chip = $chip;
+    
+    $chips.emit(addEvent);
+}
+
+chipAutocomplete = function(event){
+    var i,
+        $chips = Ion.get(event.target).parents(".chips"),
+        $input = $chips.find("input"),
+        $autocomplete = $chips.find(".list"),
+        $autocompleteItem,
+        matches = Ion.filter($chips[0].chips.autocomplete, ["text", "subtitle"], event.target.value),
+        listItem, listContent, listImg, listText, listSubtitle;
+
+    if(matches.length && $input.value().length >= $chips[0].chips.minlengthSearch){
+        if($input.value().length != $chips[0].chips.lastInputLength){
+            $autocomplete.html("");
+
+            for(i = 0; i < matches.length; i = i + 1){
+                if($chips[0].chips.autocompleteLimit && i >= $chips[0].chips.autocompleteLimit){
+                    break;
+                }
+
+                listItem = document.createElement("LI");
+                listItem.className = "item";
+                listItem.chipData = {};
+                listContent = document.createElement("DIV");
+                listContent.className = "content single-line";
+
+                if(matches[i].img){
+                    listImg = document.createElement("IMG");
+                    listImg.src = matches[i].img;
+                    listItem.chipData.img = matches[i].img;
+                    listItem.appendChild(listImg);
+                }
+                if(matches[i].text){
+                    listText = document.createElement("P");
+                    listText.innerHTML = matches[i].text;
+                    listItem.chipData.text = matches[i].text;
+                    listContent.appendChild(listText);
+                }
+                if(matches[i].subtitle){
+                    listSubtitle = document.createElement("P");
+                    listSubtitle.className = "body-1";
+                    listSubtitle.innerHTML = matches[i].subtitle;
+                    listItem.chipData.subtitle = matches[i].subtitle;
+                    listContent.appendChild(listSubtitle);
+                }
+                if(matches[i].deletable){
+                    listItem.chipData.deletable = true;
+                    listItem.setAttribute("data-deletable", "true");
+                }
+                
+                listItem.appendChild(listContent);
+
+                $autocomplete.append(listItem);
+            }
+
+            $autocomplete.addClass("show");
+        }
+    }
+    else{
+        $autocomplete.removeClass("show");
+    }
+
+    $chips[0].chips.lastInputLength = $input.value().length;
+}
+
+chipList = function(event){
+    var $chips = Ion.get(event.target).parents(".chips"),
+        $autocomplete = $chips.find(".list"),
+        $autocompleteItem,
+        $input = $chips.find("input"),
+        $selectedChip = $chips.find(".list .item.active"),
+        removeEvent = Ion.createEvent("chip.remove"),
+        $lastChip;
+
+    if($autocomplete.hasClass("show")){
+        $autocompleteItem = $autocomplete.find(".active");
+        $autocompleteItem.removeClass("active");
+
+        if(event.keyCode == 38){
+            if($autocompleteItem.length && $autocompleteItem[0].previousElementSibling){
+                $autocompleteItem[0].previousElementSibling.classList.add("active");
+            }
+
+            event.preventDefault();
+        }
+        else if(event.keyCode == 40){
+            if($autocompleteItem.length && $autocompleteItem[0].nextElementSibling){
+                $autocompleteItem[0].nextElementSibling.classList.add("active");
+            }
+            else{
+                $autocomplete.find(".item:first-of-type").addClass("active");
+            }
+        }
+    }
+
+    if(event.keyCode == 13){
+        if($selectedChip.length){
+            createChip($chips, {
+                img: $selectedChip[0].chipData.img,
+                text: $selectedChip[0].chipData.text,
+                subtitle: $selectedChip[0].chipData.subtitle,
+                deletable: $selectedChip[0].chipData.deletable
+            });
+        }
+        else{
+            createChip($chips, {
+                text: event.target.value,
+                deletable: true
+            });
+        }
+
+        event.target.value = "";
+    }
+
+    if(event.keyCode == 8 && !$input.value().length){
+        $lastChip = $chips.find(".chip:last-of-type");
+
+        if($lastChip.length){
+            $lastChip.remove();
+
+            removeEvent.chip = $lastChip[0];
+
+            $chips.emit(removeEvent);
+        }
+    }
+}
+
+chipInput = function(event){
+    var $chips = Ion.get(event.target).parents(".chips");
+
+    if($chips[0].chips && $chips[0].chips.autocomplete){
+        chipAutocomplete(event);
+    }
+}
+
+chipSelect = function(event){
+    var $item = Ion.get(event.target),
+        $chips = $item.parents(".chips");
+
+    if($item.hasClass("item") || $item.parents(".item").length){
+        if($item.parents(".item").length){
+            $item = $item.parents(".item");
+        }
+
+        createChip($chips, {
+            img: $item[0].chipData.img,
+            text: $item[0].chipData.text,
+            subtitle: $item[0].chipData.subtitle,
+            deletable: $item[0].chipData.deletable
+        });
+
+        $chips.find("input")[0].value = "";
+        $chips.find(".list").removeClass("show");
+    }
+}
+
+chipClick = function(event){
+    var $element = Ion.get(event.target),
+        $chips = $element.parents(".chips"),
+        removeEvent = Ion.createEvent("chip.remove");
+
+    if($element.hasClass("icon")){
+        $element.parents(".chip").remove();
+
+        removeEvent.chip = $element.parents(".chip")[0];
+
+        $chips.emit(removeEvent);
+    }
+}
+
+IonSelector.fn.chips = function(data){
+    var $content,
+        $input,
+        $chipsList;
+
+    this.each(function(){
+        $content = Ion.get(this).find(".content");
+        $input = $content.find("input");
+
+        if(!$content.length){
+            $content = document.createElement("DIV");
+            $content.className = "content";
+
+            this.appendChild($content);
+
+            $content = Ion.get($content);
+        }
+
+        if(!$input.length){
+            $input = document.createElement("INPUT");
+            $input.type = "text";
+
+            $content.append($input);
+
+            $input = Ion.get($input);
+        }
+
+        if(data){
+            if(data.placeholder){
+                $input[0].placeholder = data.placeholder;
+            }
+
+            if(data.autocomplete){
+                this.chips = {};
+                this.chips.lastInputLength = $input.value().length;
+                this.chips.autocomplete = data.autocomplete.sort(function(a, b){
+                    var compare = a.text.localeCompare(b.text);
+
+                    if(compare > 0){
+                        return 1;
+                    }
+                    else if(compare < 0){
+                        return -1;
+                    }
+                    else{
+                        return 0;
+                    }
+                });
+
+                $chipsList = $content.find(".list");
+
+                if(!$chipsList.length){
+                    $chipsList = document.createElement("UL");
+                    $chipsList.className = "list";
+
+                    $content.append($chipsList);
+
+                    $chipsList = Ion.get($chipsList);
+                }
+
+                $chipsList.on("click", chipSelect);
+            }
+
+            if(data.limit){
+                this.chips.autocompleteLimit = data.limit;
+            }
+
+            if(data.minlengthSearch){
+                this.chips.minlengthSearch = data.minlengthSearch;
+            }
+            else{
+                this.chips.minlengthSearch = 0;
+            }
+        }
+
+        Ion.get(this).on("click", chipClick);
+        $input.on("keyup", chipInput).on("keydown", chipList);
+    });
 }
 
 Ion.run();

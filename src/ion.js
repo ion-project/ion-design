@@ -500,6 +500,31 @@ IonSelector.fn.on = function(events, callback, useCapture){
     return this;
 }
 
+IonSelector.fn.parent = function(selector){
+    var results = [],
+        obj;
+    
+    this.each(function(){
+        if(this.parentNode){
+            if(selector){
+                if(Ion.matches(this.parentNode, selector)){
+                    results.push(this.parentNode);
+                }
+            }
+            else{
+                results.push(this.parentNode);
+            }
+        }
+    });
+
+    obj = new IonSelector();
+
+    this.arrayToObj(results, obj);
+    obj.length = results.length;
+
+    return obj;
+}
+
 IonSelector.fn.parents = function(selector){
     var parent,
     results = [],
@@ -881,7 +906,10 @@ endRipple = function(event){
     while(prev){
         aux = prev;
         prev = prev.previousElementSibling;
-        aux.remove();
+
+        if(aux.classList.contains("wave")){
+            aux.remove();
+        }
     }
 
     if(!ripplePressed){
@@ -989,8 +1017,8 @@ IonSelector.fn.flatRipple = function(){
 hideExpansionPanel = function(event){
     var $element = Ion.get(event.target).parents(".item.expansion, .expansion-panel .item");
 
-    if(!expansion){
-       $element.removeClass("active"); 
+    if(!expansion && $element.length){
+        $element.i(0).removeClass("active"); 
     }
 }
 
@@ -1022,10 +1050,6 @@ IonSelector.fn.expansionPanel = function(){
             window.getComputedStyle($content).height;
 
             $content.style.height = contentHeight + "px";
-        }
-
-        if(Ion.get($element).parents(".expansion-panel").length){
-            document.body.scrollTop = $element.offsetTop;
         }
     }
 }
@@ -1107,6 +1131,7 @@ IonSelector.fn.tabs = function(){
         if($tab.length){
             if(!$active.length){
                 $active = Ion.get($tab[0]);
+                $active.addClass("active");
             }
 
             indicatorPosition($indicator, $active, this);
@@ -1239,7 +1264,7 @@ createChip = function($chips, data){
     if(data.deletable){
         chipDeletable = document.createElement("I");
         chipDeletable.className = "icon";
-        chipDeletable.innerHTML = "&#xE5CD;";
+        chipDeletable.innerHTML = "&#xE5C9;";
         $chip.appendChild(chipDeletable);
     }
 
@@ -1327,12 +1352,13 @@ chipList = function(event){
 
     if($autocomplete.hasClass("show")){
         $autocompleteItem = $autocomplete.find(".active");
-        $autocompleteItem.removeClass("active");
 
         if(event.keyCode == 38){
             if($autocompleteItem.length && $autocompleteItem[0].previousElementSibling){
                 $autocompleteItem[0].previousElementSibling.classList.add("active");
             }
+
+            $autocompleteItem.removeClass("active");
 
             event.preventDefault();
         }
@@ -1343,6 +1369,8 @@ chipList = function(event){
             else{
                 $autocomplete.find(".item:first-of-type").addClass("active");
             }
+
+            $autocompleteItem.removeClass("active");
         }
     }
 
@@ -1365,16 +1393,26 @@ chipList = function(event){
         event.target.value = "";
     }
 
-    if(event.keyCode == 8 && !$input.value().length){
-        $lastChip = $chips.find(".chip:last-of-type");
+    if(event.keyCode == 8){
+        if(!$input.value().length){
+            $lastChip = $chips.find(".chip:last-of-type");
 
-        if($lastChip.length){
-            $lastChip.remove();
+            if($lastChip.length){
+                if($lastChip.hasClass("active")){
+                    $lastChip.remove();
 
-            removeEvent.chip = $lastChip[0];
+                    removeEvent.chip = $lastChip[0];
 
-            $chips.emit(removeEvent);
+                    $chips.emit(removeEvent);
+                }
+                else{
+                    $lastChip.addClass("active");
+                }
+            }
         }
+    }
+    else{
+        $chips.find(".chip.active").removeClass("active");
     }
 }
 

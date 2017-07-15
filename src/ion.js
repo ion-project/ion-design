@@ -7,7 +7,7 @@ var hideOverlay, closeDialog, responsiveDialog, newToast, otherToast, hideToast,
 
 function IonFramework(){
     
-    this.version = "0.08.10";
+    this.version = "0.12";
 
 }
 
@@ -500,9 +500,17 @@ IonSelector.fn.on = function(events, callback, useCapture){
     return this;
 }
 
+IonSelector.fn.new = function(prototype){
+    var obj = new IonSelector();
+
+    this.arrayToObj(prototype, obj);
+    obj.length = prototype.length;
+
+    return obj;
+}
+
 IonSelector.fn.parent = function(selector){
-    var results = [],
-        obj;
+    var results = [];
     
     this.each(function(){
         if(this.parentNode){
@@ -517,18 +525,12 @@ IonSelector.fn.parent = function(selector){
         }
     });
 
-    obj = new IonSelector();
-
-    this.arrayToObj(results, obj);
-    obj.length = results.length;
-
-    return obj;
+    return this.new(results);
 }
 
 IonSelector.fn.parents = function(selector){
     var parent,
-    results = [],
-    obj;
+    results = [];
 
     selector = selector ? selector : false;
 
@@ -551,17 +553,11 @@ IonSelector.fn.parents = function(selector){
         }
     });
 
-    obj = new IonSelector();
-
-    this.arrayToObj(results, obj);
-    obj.length = results.length;
-
-    return obj;
+    return this.new(results);
 }
 
 IonSelector.fn.children = function(selector){
     var results = [],
-        obj,
         childrens,
         i;
 
@@ -584,17 +580,11 @@ IonSelector.fn.children = function(selector){
         }
     });
 
-    obj = new IonSelector();
-
-    this.arrayToObj(results, obj);
-    obj.length = results.length;
-
-    return obj;
+    return this.new(results);
 }
 
 IonSelector.fn.find = function(selector){
-    var results = [],
-        obj;
+    var results = [];
 
     this.each(function(){
         Ion.get(selector, this).each(function(){
@@ -604,17 +594,11 @@ IonSelector.fn.find = function(selector){
         });
     });
 
-    obj = new IonSelector();
-
-    this.arrayToObj(results, obj);
-    obj.length = results.length;
-
-    return obj;
+    return this.new(results);
 }
 
 IonSelector.fn.prev = function(selector){
     var results = [],
-        obj,
         prev;
 
     this.each(function(){
@@ -639,17 +623,11 @@ IonSelector.fn.prev = function(selector){
         }
     });
 
-    obj = new IonSelector();
-
-    this.arrayToObj(results, obj);
-    obj.length = results.length;
-
-    return obj;
+    return this.new(results);
 }
 
 IonSelector.fn.next = function(selector){
     var results = [],
-        obj,
         next;
 
     this.each(function(){
@@ -674,12 +652,7 @@ IonSelector.fn.next = function(selector){
         }
     });
 
-    obj = new IonSelector();
-
-    this.arrayToObj(results, obj);
-    obj.length = results.length;
-
-    return obj;
+    return this.new(results);
 }
 
 IonSelector.fn.i = function(index){

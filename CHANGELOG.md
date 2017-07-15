@@ -4,6 +4,7 @@
 - add Material colors text
 - add parent selector
 - improve layout and components styles
+- improve velocity and stability
 
 ## version 0.11 2017-07-08
 - add offset spaces to grid system

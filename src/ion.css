@@ -2098,7 +2098,7 @@ button, a.button{
 .button{
     border: none;
 }
-.button, .button .icon, .switch, .radio, .checkbox{
+.button, .icon, .switch, .radio, .checkbox{
     vertical-align: middle;
 }
 .button, .tabs{
@@ -2307,7 +2307,6 @@ a.button.flat, a.button.raised{
     left: 12px;
     font-size: 1.25em;
     position: relative;
-    vertical-align: middle;
     margin: 0px 4px 0px -12px;
 }
 .chip:active{

@@ -1,10 +1,22 @@
-# IonDesign version 0.1
+# IonDesign version 0.12
 
-## version 0.1
+## version 0.12 2017-07-14
+- add Material colors text
+- add parent selector
+- improve layout and components styles
+
+## version 0.11 2017-07-08
+- add offset spaces to grid system
+
+## version 0.1 2017-07-03
 - merge branch "b" and master
 - add prepend DOM function
 - add insertBefore DOM function
 - add insertAfter DOM function
+- add progress & activity section
+    - progress linear determinate
+    - progress linear indeterminate
+- add .hide class
 
 ## version 0.11b 2017-07-02
 - add function to get element inner html

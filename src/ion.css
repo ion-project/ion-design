@@ -1,4 +1,4 @@
-/* IonDesign - version 0.1 */
+/* IonDesign - version 0.12 */
 
 @import "https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500";
 
@@ -53,7 +53,7 @@ a{
     font-size: 14px;
     font-weight: 500;
 }
-.body-1, .card .content, table.table tr td{
+.body-1, .card .content, table.table tr td, .list .item.expansion .list .item{
     font-size: 14px;
 }
 .caption, .text-field input:focus ~ label, .text-field input.active ~ label, table.table tr th{
@@ -818,7 +818,7 @@ a{
 .grey-50{
     background-color: #FAFAFA !important;
 }
-.grey-100, .toolbar{
+.grey-100{
     background-color: #F5F5F5 !important;
 }
 .grey-200{
@@ -885,10 +885,795 @@ a{
     background-color: #FFFFFF !important;
 }
 
-.red-50, .red-100, .red-200, .red-300, .red-a100, .pink-50, .pink-100, .pink-200, .pink-a100, .purple-50, .purple-100, .purple-200, .purple-a100, .deep-purple-50, .deep-purple-100, .deep-purple-200, .deep-purple-a100, .indigo-50, .indigo-100, .indigo-200, .indigo-a100, .blue-50, .blue-100, .blue-200, .blue-300, .blue-400, .blue-a100, .light-blue-50, .light-blue-100, .light-blue-200, .light-blue-300, .light-blue-400, .light-blue-500, .light-blue-a100, .light-blue-a200, .light-blue-a400, .cyan-50, .cyan-100, .cyan-200, .cyan-300, .cyan-400, .cyan-500, .cyan-600, .cyan-a100, .cyan-a200, .cyan-a400, .cyan-a700,.teal-50, .teal-100, .teal-200, .teal-300, .teal-400, .teal-a100, .teal-a200, .teal-a400, .teal-a700, .green-50, .green-100, .green-200, .green-300, .green-400, .green-500, .green-a100, .green-a200, .green-a400, .green-a700, .light-green-50, .light-green-100, .light-green-200 .light-green-300, .light-green-400, .light-green-500, .light-green-600, .light-green-a100, .light-green-a200, .light-green-a400, .light-green-a700, .lime-50, .lime-100, .lime-200, .lime-300, .lime-400, .lime-500, .lime-600, .lime-700, .lime-800, .lime-a100, .lime-a200, .lime-a400, .lime-a700, .yellow-50, .yellow-100, .yellow-200, .yellow-300, .yellow-400, .yellow-500, .yellow-600, .yellow-700, .yellow-800, .yellow-900, .yellow-a100, .yellow-a200, .yellow-a400, .yellow-a700,.amber-50, .amber-100, .amber-200, .amber-300, .amber-400, .amber-500, .amber-600, .amber-700, .amber-800, .amber-900, .amber-a100, .amber-a200, .amber-a400, .amber-a700, .orange-50, .orange-100, .orange-200, .orange-300, .orange-400, .orange-500, .orange-600, .orange-700, .orange-a100, .orange-a200, .orange-a400, .orange-a700, .deep-orange-50, .deep-orange-100, .deep-orange-200, .deep-orange-300, .deep-orange-400, .brown-50, .brown-100, .brown-200, .deep-orange-a100, .deep-orange-a200, .grey-50, .grey-100, .grey-200, .grey-300, .grey-400, .grey-500, .blue-grey-50, .blue-grey-100, .blue-grey-200, .blue-grey-300, .white, .button .icon, a > .item{
+.red-50-text{
+    color: #FFEBEE !important;
+}
+.red-100-text{
+    color: #FFCDD2 !important;
+}
+.red-200-text{
+    color: #EF9A9A !important;
+}
+.red-300-text{
+    color: #E57373 !important;
+}
+.red-400-text{
+    color: #EF5350 !important;
+}
+.red-500-text{
+    color: #F44336 !important;
+}
+.red-600-text{
+    color: #E53935 !important;
+}
+.red-700-text{
+    color: #D32F2F !important;
+}
+.red-800-text{
+    color: #C62828 !important;
+}
+.red-900-text{
+    color: #B7161C !important;
+}
+.red-a100-text{
+    color: #FF8A80 !important;
+}
+.red-a200-text{
+    color: #FF5252 !important;
+}
+.red-a400-text{
+    color: #FF1744 !important;
+}
+.red-a700-text{
+    color: #D50000 !important;
+}
+
+.pink-50-text{
+    color: #FCE4EC !important;
+}
+.pink-100-text{
+    color: #F8BBD0 !important;
+}
+.pink-200-text{
+    color: #F48FB1 !important;
+}
+.pink-300-text{
+    color: #F06292 !important;
+}
+.pink-400-text{
+    color: #EC407A !important;
+}
+.pink-500-text{
+    color: #E91E63 !important;
+}
+.pink-600-text{
+    color: #D81B60 !important;
+}
+.pink-700-text{
+    color: #C2185B !important;
+}
+.pink-800-text{
+    color: #AD1457 !important;
+}
+.pink-900-text{
+    color: #880E4F !important;
+}
+.pink-a100-text{
+    color: #FF80AB !important;
+}
+.pink-a200-text{
+    color: #FF4081 !important;
+}
+.pink-a400-text{
+    color: #F50057 !important;
+}
+.pink-a700-text{
+    color: #C51162 !important;
+}
+
+.purple-50-text{
+    color: #F3E5F5 !important;
+}
+.purple-100-text{
+    color: #E1BEE7 !important;
+}
+.purple-200-text{
+    color: #CE93D8 !important;
+}
+.purple-300-text{
+    color: #BA68C8 !important;
+}
+.purple-400-text{
+    color: #AB47BC !important;
+}
+.purple-500-text{
+    color: #9C27B0 !important;
+}
+.purple-600-text{
+    color: #8E24AA !important;
+}
+.purple-700-text{
+    color: #7B1FA2 !important;
+}
+.purple-800-text{
+    color: #6A1B9A !important;
+}
+.purple-900-text{
+    color: #4A148C !important;
+}
+.purple-a100-text{
+    color: #EA80FC !important;
+}
+.purple-a200-text{
+    color: #E040FB !important;
+}
+.purple-a400-text{
+    color: #D500F9 !important;
+}
+.purple-a700-text{
+    color: #AA00FF !important;
+}
+
+.deep-purple-50-text{
+    color: #EDE7F6 !important;
+}
+.deep-purple-100-text{
+    color: #D1C4E9 !important;
+}
+.deep-purple-200-text{
+    color: #B39DDB !important;
+}
+.deep-purple-300-text{
+    color: #9575CD !important;
+}
+.deep-purple-400-text{
+    color: #7E57C2 !important;
+}
+.deep-purple-500-text{
+    color: #673AB7 !important;
+}
+.deep-purple-600-text{
+    color: #5E35B1 !important;
+}
+.deep-purple-700-text{
+    color: #512DA8 !important;
+}
+.deep-purple-800-text{
+    color: #4527A0 !important;
+}
+.deep-purple-900-text{
+    color: #311B92 !important;
+}
+.deep-purple-a100-text{
+    color: #9388FF !important;
+}
+.deep-purple-a200-text{
+    color: #7C4DFF !important;
+}
+.deep-purple-a400-text{
+    color: #651FFF !important;
+}
+.deep-purple-a700-text{
+    color: #6200FA !important;
+}
+
+.indigo-50-text{
+    color: #E8EAF6 !important;
+}
+.indigo-100-text{
+    color: #C5CAE9 !important;
+}
+.indigo-200-text{
+    color: #9FA8DA !important;
+}
+.indigo-300-text{
+    color: #7986CB !important;
+}
+.indigo-400-text{
+    color: #5C6BC0 !important;
+}
+.indigo-500-text{
+    color: #3F51B5 !important;
+}
+.indigo-600-text{
+    color: #3949AB !important;
+}
+.indigo-700-text{
+    color: #303F9F !important;
+}
+.indigo-800-text{
+    color: #283593 !important;
+}
+.indigo-900-text{
+    color: #1A2373 !important;
+}
+.indigo-a100-text{
+    color: #8C9EFF !important;
+}
+.indigo-a200-text{
+    color: #536DFE !important;
+}
+.indigo-a400-text{
+    color: #3D5AFE !important;
+}
+.indigo-a700-text{
+    color: #304FFE !important;
+}
+
+.blue-50-text{
+    color: #E3F2FD !important;
+}
+.blue-100-text{
+    color: #BBDEFB !important;
+}
+.blue-200-text{
+    color: #90CAF9 !important;
+}
+.blue-300-text{
+    color: #64B5F6 !important;
+}
+.blue-400-text{
+    color: #42A5F5 !important;
+}
+.blue-500-text{
+    color: #2196F3 !important;
+}
+.blue-600-text{
+    color: #1E88E5 !important;
+}
+.blue-700-text{
+    color: #1976D2 !important;
+}
+.blue-800-text{
+    color: #1565C0 !important;
+}
+.blue-900-text{
+    color: #0D47A1 !important;
+}
+.blue-a100-text{
+    color: #82B1FF !important;
+}
+.blue-a200-text{
+    color: #448AFF !important;
+}
+.blue-a400-text{
+    color: #2979FF !important;
+}
+.blue-a700-text{
+    color: #2962FF !important;
+}
+
+.light-blue-50-text{
+    color: #E1F5FE !important;
+}
+.light-blue-100-text{
+    color: #B3E5FC !important;
+}
+.light-blue-200-text{
+    color: #81D4F4 !important;
+}
+.light-blue-300-text{
+    color: #4FC3F7 !important;
+}
+.light-blue-400-text{
+    color: #29B6F6 !important;
+}
+.light-blue-500-text{
+    color: #03A9F4 !important;
+}
+.light-blue-600-text{
+    color: #039BE5 !important;
+}
+.light-blue-700-text{
+    color: #0288D1 !important;
+}
+.light-blue-800-text{
+    color: #0277BD !important;
+}
+.light-blue-900-text{
+    color: #01579B !important;
+}
+.light-blue-a100-text{
+    color: #80D8FF !important;
+}
+.light-blue-a200-text{
+    color: #40C4FF !important;
+}
+.light-blue-a400-text{
+    color: #00B0FF !important;
+}
+.light-blue-a700-text{
+    color: #0091EA !important;
+}
+
+.cyan-50-text{
+    color: #E0F7F4 !important;
+}
+.cyan-100-text{
+    color: #B2EBF2 !important;
+}
+.cyan-200-text{
+    color: #80DEEA !important;
+}
+.cyan-300-text{
+    color: #4DD0E1 !important;
+}
+.cyan-400-text{
+    color: #26C6DA !important;
+}
+.cyan-500-text{
+    color: #00BCD4 !important;
+}
+.cyan-600-text{
+    color: #00ACC1 !important;
+}
+.cyan-700-text{
+    color: #0097A7 !important;
+}
+.cyan-800-text{
+    color: #00838F !important;
+}
+.cyan-900-text{
+    color: #006064 !important;
+}
+.cyan-a100-text{
+    color: #84FFFF !important;
+}
+.cyan-a200-text{
+    color: #18FFFF !important;
+}
+.cyan-a400-text{
+    color: #00E5FF !important;
+}
+.cyan-a700-text{
+    color: #00B8D4 !important;
+}
+
+.teal-50-text{
+    color: #E0F2F1 !important;
+}
+.teal-100-text{
+    color: #B2DFDB !important;
+}
+.teal-200-text{
+    color: #80CBC4 !important;
+}
+.teal-300-text{
+    color: #4DB6AC !important;
+}
+.teal-400-text{
+    color: #26A69A !important;
+}
+.teal-500-text{
+    color: #009688 !important;
+}
+.teal-600-text{
+    color: #00897B !important;
+}
+.teal-700-text{
+    color: #00796B !important;
+}
+.teal-800-text{
+    color: #00695C !important;
+}
+.teal-900-text{
+    color: #004D40 !important;
+}
+.teal-a100-text{
+    color: #A7FFEB !important;
+}
+.teal-a200-text{
+    color: #64FFDA !important;
+}
+.teal-a400-text{
+    color: #1DE9B6 !important;
+}
+.teal-a700-text{
+    color: #00BFA5 !important;
+}
+
+.green-50-text{
+    color: #E8F5E9 !important;
+}
+.green-100-text{
+    color: #C8E6C9 !important;
+}
+.green-200-text{
+    color: #A5D6A7 !important;
+}
+.green-300-text{
+    color: #81C784 !important;
+}
+.green-400-text{
+    color: #66BB6A !important;
+}
+.green-500-text{
+    color: #4CAF50 !important;
+}
+.green-600-text{
+    color: #43A047 !important;
+}
+.green-700-text{
+    color: #388E3C !important;
+}
+.green-800-text{
+    color: #2E7D32 !important;
+}
+.green-900-text{
+    color: #1B5E20 !important;
+}
+.green-a100-text{
+    color: #B9F6CA !important;
+}
+.green-a200-text{
+    color: #69F0AE !important;
+}
+.green-a400-text{
+    color: #00E676 !important;
+}
+.green-a700-text{
+    color: #00C853 !important;
+}
+
+.light-green-50-text{
+    color: #F1F8E9 !important;
+}
+.light-green-100-text{
+    color: #DCEDC8 !important;
+}
+.light-green-200-text{
+    color: #C5E1A5 !important;
+}
+.light-green-300-text{
+    color: #AED581 !important;
+}
+.light-green-400-text{
+    color: #9CCC65 !important;
+}
+.light-green-500-text{
+    color: #8BC34A !important;
+}
+.light-green-600-text{
+    color: #7CB342 !important;
+}
+.light-green-700-text{
+    color: #689F38 !important;
+}
+.light-green-800-text{
+    color: #558B2F !important;
+}
+.light-green-900-text{
+    color: #33691E !important;
+}
+.light-green-a100-text{
+    color: #CCFF90 !important;
+}
+.light-green-a200-text{
+    color: #B2FF59 !important;
+}
+.light-green-a400-text{
+    color: #76FF03 !important;
+}
+.light-green-a700-text{
+    color: #64DD17 !important;
+}
+
+.lime-50-text{
+    color: #F9FBE7 !important;
+}
+.lime-100-text{
+    color: #F0F4C3 !important;
+}
+.lime-200-text{
+    color: #E6EE9C !important;
+}
+.lime-300-text{
+    color: #DCE775 !important;
+}
+.lime-400-text{
+    color: #D4E157 !important;
+}
+.lime-500-text{
+    color: #CDDC39 !important;
+}
+.lime-600-text{
+    color: #C0CA33 !important;
+}
+.lime-700-text{
+    color: #AFB42B !important;
+}
+.lime-800-text{
+    color: #9E9D24 !important;
+}
+.lime-900-text{
+    color: #827717 !important;
+}
+.lime-a100-text{
+    color: #F4FF81 !important;
+}
+.lime-a200-text{
+    color: #EEFF41 !important;
+}
+.lime-a400-text{
+    color: #C6FF00 !important;
+}
+.lime-a700-text{
+    color: #AEEA00 !important;
+}
+
+.yellow-50-text{
+    color: #FFFDE7 !important;
+}
+.yellow-100-text{
+    color: #FFF9C4 !important;
+}
+.yellow-200-text{
+    color: #FFF59D !important;
+}
+.yellow-300-text{
+    color: #FFF176 !important;
+}
+.yellow-400-text{
+    color: #FFEE58 !important;
+}
+.yellow-500-text{
+    color: #FFEB3B !important;
+}
+.yellow-600-text{
+    color: #FDD835 !important;
+}
+.yellow-700-text{
+    color: #FBC02D !important;
+}
+.yellow-800-text{
+    color: #F9A825 !important;
+}
+.yellow-900-text{
+    color: #F57F17 !important;
+}
+.yellow-a100-text{
+    color: #FFFF8D !important;
+}
+.yellow-a200-text{
+    color: #FFFF00 !important;
+}
+.yellow-a400-text{
+    color: #FFEA00 !important;
+}
+.yellow-a700-text{
+    color: #FFD600 !important;
+}
+
+.amber-50-text{
+    color: #FFF8E1 !important;
+}
+.amber-100-text{
+    color: #FFECB3 !important;
+}
+.amber-200-text{
+    color: #FFE082 !important;
+}
+.amber-300-text{
+    color: #FFD54F !important;
+}
+.amber-400-text{
+    color: #FFCA28 !important;
+}
+.amber-500-text{
+    color: #FFC107 !important;
+}
+.amber-600-text{
+    color: #FFB300 !important;
+}
+.amber-700-text{
+    color: #FFA000 !important;
+}
+.amber-800-text{
+    color: #FF8F00 !important;
+}
+.amber-900-text{
+    color: #FF6F00 !important;
+}
+.amber-a100-text{
+    color: #FFE57F !important;
+}
+.amber-a200-text{
+    color: #FFD740 !important;
+}
+.amber-a400-text{
+    color: #FFC400 !important;
+}
+.amber-a700-text{
+    color: #FFAB00 !important;
+}
+
+.orange-50-text{
+    color: #FFF3E0 !important;
+}
+.orange-100-text{
+    color: #FFE0B2 !important;
+}
+.orange-200-text{
+    color: #FFCC80 !important;
+}
+.orange-300-text{
+    color: #FFB74D !important;
+}
+.orange-400-text{
+    color: #FFA726 !important;
+}
+.orange-500-text{
+    color: #FF9800 !important;
+}
+.orange-600-text{
+    color: #FB8C00 !important;
+}
+.orange-700-text{
+    color: #F57C00 !important;
+}
+.orange-800-text{
+    color: #EF6C00 !important;
+}
+.orange-900-text{
+    color: #E65100 !important;
+}
+.orange-a100-text{
+    color: #FFD180 !important;
+}
+.orange-a200-text{
+    color: #FFAB40 !important;
+}
+.orange-a400-text{
+    color: #FF9100 !important;
+}
+.orange-a700-text{
+    color: #FF6D00 !important;
+}
+
+.deep-orange-50-text{
+    color: #FBE9E7 !important;
+}
+.deep-orange-100-text{
+    color: #FFCCBC !important;
+}
+.deep-orange-200-text{
+    color: #FFAB91 !important;
+}
+.deep-orange-300-text{
+    color: #FF8A65 !important;
+}
+.deep-orange-400-text{
+    color: #FF7043 !important;
+}
+.deep-orange-500-text{
+    color: #FF5722 !important;
+}
+.deep-orange-600-text{
+    color: #F4511E !important;
+}
+.deep-orange-700-text{
+    color: #E64A19 !important;
+}
+.deep-orange-800-text{
+    color: #D84315 !important;
+}
+.deep-orange-900-text{
+    color: #BF360C !important;
+}
+.deep-orange-a100-text{
+    color: #FF9E80 !important;
+}
+.deep-orange-a200-text{
+    color: #FF6E40 !important;
+}
+.deep-orange-a400-text{
+    color: #FF3D00 !important;
+}
+.deep-orange-a700-text{
+    color: #DD2C00 !important;
+}
+
+.brown-50-text{
+    color: #EFEBE9 !important;
+}
+.brown-100-text{
+    color: #D7CCC8 !important;
+}
+.brown-200-text{
+    color: #BCAAA4 !important;
+}
+.brown-300-text{
+    color: #A1887F !important;
+}
+.brown-400-text{
+    color: #8D6E63 !important;
+}
+.brown-500-text{
+    color: #795548 !important;
+}
+.brown-600-text{
+    color: #6D4C41 !important;
+}
+.brown-700-text{
+    color: #5D4037 !important;
+}
+.brown-800-text{
+    color: #4E342E !important;
+}
+.brown-900-text{
+    color: #3E2723 !important;
+}
+
+.grey-50-text{
+    color: #FAFAFA !important;
+}
+.grey-100-text{
+    color: #F5F5F5 !important;
+}
+.grey-200-text{
+    color: #EEEEEE !important;
+}
+.grey-300-text{
+    color: #E0E0E0 !important;
+}
+.grey-400-text{
+    color: #BDBDBD !important;
+}
+.grey-500-text{
+    color: #9E9E9E !important;
+}
+.grey-600-text{
+    color: #757575 !important;
+}
+.grey-700-text{
+    color: #616161 !important;
+}
+.grey-800-text{
+    color: #424242 !important;
+}
+.grey-900-text{
+    color: #212121 !important;
+}
+
+.blue-grey-50-text{
+    color: #ECEFF1 !important;
+}
+.blue-grey-100-text{
+    color: #CFD8DC !important;
+}
+.blue-grey-200-text{
+    color: #B0BEC5 !important;
+}
+.blue-grey-300-text{
+    color: #90A4AE !important;
+}
+.blue-grey-400-text{
+    color: #78909C !important;
+}
+.blue-grey-500-text{
+    color: #607D8B !important;
+}
+.blue-grey-600-text{
+    color: #546E7A !important;
+}
+.blue-grey-700-text{
+    color: #455A64 !important;
+}
+.blue-grey-800-text{
+    color: #37474F !important;
+}
+.blue-grey-900-text{
+    color: #263238 !important;
+}
+
+.black-text{
+    color: #000000 !important;
+}
+
+.red-50, .red-100, .red-200, .red-300, .red-a100, .pink-50, .pink-100, .pink-200, .pink-a100, .purple-50, .purple-100, .purple-200, .purple-a100, .deep-purple-50, .deep-purple-100, .deep-purple-200, .deep-purple-a100, .indigo-50, .indigo-100, .indigo-200, .indigo-a100, .blue-50, .blue-100, .blue-200, .blue-300, .blue-400, .blue-a100, .light-blue-50, .light-blue-100, .light-blue-200, .light-blue-300, .light-blue-400, .light-blue-500, .light-blue-a100, .light-blue-a200, .light-blue-a400, .cyan-50, .cyan-100, .cyan-200, .cyan-300, .cyan-400, .cyan-500, .cyan-600, .cyan-a100, .cyan-a200, .cyan-a400, .cyan-a700, .teal-50, .teal-100, .teal-200, .teal-300, .teal-400, .teal-a100, .teal-a200, .teal-a400, .teal-a700, .green-50, .green-100, .green-200, .green-300, .green-400, .green-500, .green-a100, .green-a200, .green-a400, .green-a700, .light-green-50, .light-green-100, .light-green-200, .light-green-300, .light-green-400, .light-green-500, .light-green-600, .light-green-a100, .light-green-a200, .light-green-a400, .light-green-a700, .lime-50, .lime-100, .lime-200, .lime-300, .lime-400, .lime-500, .lime-600, .lime-700, .lime-800, .lime-a100, .lime-a200, .lime-a400, .lime-a700, .yellow-50, .yellow-100, .yellow-200, .yellow-300, .yellow-400, .yellow-500, .yellow-600, .yellow-700, .yellow-800, .yellow-900, .yellow-a100, .yellow-a200, .yellow-a400, .yellow-a700, .amber-50, .amber-100, .amber-200, .amber-300, .amber-400, .amber-500, .amber-600, .amber-700, .amber-800, .amber-900, .amber-a100, .amber-a200, .amber-a400, .amber-a700, .orange-50, .orange-100, .orange-200, .orange-300, .orange-400, .orange-500, .orange-600, .orange-700, .orange-a100, .orange-a200, .orange-a400, .orange-a700, .deep-orange-50, .deep-orange-100, .deep-orange-200, .deep-orange-300, .deep-orange-400, .brown-50, .brown-100, .brown-200, .deep-orange-a100, .deep-orange-a200, .grey-50, .grey-100, .grey-200, .grey-300, .grey-400, .grey-500, .blue-grey-50, .blue-grey-100, .blue-grey-200, .blue-grey-300, .red-50 .icon, .red-100 .icon, .red-200 .icon, .red-300 .icon, .red-a100 .icon, .pink-50 .icon, .pink-100 .icon, .pink-200 .icon, .pink-a100 .icon, .purple-50 .icon, .purple-100 .icon, .purple-200 .icon, .purple-a100 .icon, .deep-purple-50 .icon, .deep-purple-100 .icon, .deep-purple-200 .icon, .deep-purple-a100 .icon, .indigo-50 .icon, .indigo-100 .icon, .indigo-200 .icon, .indigo-a100 .icon, .blue-50 .icon, .blue-100 .icon, .blue-200 .icon, .blue-300 .icon, .blue-400 .icon, .blue-a100 .icon, .light-blue-50 .icon, .light-blue-100 .icon, .light-blue-200 .icon, .light-blue-300 .icon, .light-blue-400 .icon, .light-blue-500 .icon, .light-blue-a100 .icon, .light-blue-a200 .icon, .light-blue-a400 .icon, .cyan-50 .icon, .cyan-100 .icon, .cyan-200 .icon, .cyan-300 .icon, .cyan-400 .icon, .cyan-500 .icon, .cyan-600 .icon, .cyan-a100 .icon, .cyan-a200 .icon, .cyan-a400 .icon, .cyan-a700 .icon, .teal-50 .icon, .teal-100 .icon, .teal-200 .icon, .teal-300 .icon, .teal-400 .icon, .teal-a100 .icon, .teal-a200 .icon, .teal-a400 .icon, .teal-a700 .icon, .green-50 .icon, .green-100 .icon, .green-200 .icon, .green-300 .icon, .green-400 .icon, .green-500 .icon, .green-a100 .icon, .green-a200 .icon, .green-a400 .icon, .green-a700 .icon, .light-green-50 .icon, .light-green-100 .icon, .light-green-200 .icon, .light-green-300 .icon, .light-green-400 .icon, .light-green-500 .icon, .light-green-600 .icon, .light-green-a100 .icon, .light-green-a200 .icon, .light-green-a400 .icon, .light-green-a700 .icon, .lime-50 .icon, .lime-100 .icon, .lime-200 .icon, .lime-300 .icon, .lime-400 .icon, .lime-500 .icon, .lime-600 .icon, .lime-700 .icon, .lime-800 .icon, .lime-a100 .icon, .lime-a200 .icon, .lime-a400 .icon, .lime-a700 .icon, .yellow-50 .icon, .yellow-100 .icon, .yellow-200 .icon, .yellow-300 .icon, .yellow-400 .icon, .yellow-500 .icon, .yellow-600 .icon, .yellow-700 .icon, .yellow-800 .icon, .yellow-900 .icon, .yellow-a100 .icon, .yellow-a200 .icon, .yellow-a400 .icon, .yellow-a700 .icon, .amber-50 .icon, .amber-100 .icon, .amber-200 .icon, .amber-300 .icon, .amber-400 .icon, .amber-500 .icon, .amber-600 .icon, .amber-700 .icon, .amber-800 .icon, .amber-900 .icon, .amber-a100 .icon, .amber-a200 .icon, .amber-a400 .icon, .amber-a700 .icon, .orange-50 .icon, .orange-100 .icon, .orange-200 .icon, .orange-300 .icon, .orange-400 .icon, .orange-500 .icon, .orange-600 .icon, .orange-700 .icon, .orange-a100 .icon, .orange-a200 .icon, .orange-a400 .icon, .orange-a700 .icon, .deep-orange-50 .icon, .deep-orange-100 .icon, .deep-orange-200 .icon, .deep-orange-300 .icon, .deep-orange-400 .icon, .brown-50 .icon, .brown-100 .icon, .brown-200 .icon, .deep-orange-a100 .icon, .deep-orange-a200 .icon, .grey-50 .icon, .grey-100 .icon, .grey-200 .icon, .grey-300 .icon, .grey-400 .icon, .grey-500 .icon, .blue-grey-50 .icon, .blue-grey-100 .icon, .blue-grey-200 .icon, .blue-grey-300 .icon, .white .icon, .button .icon, a > .item{
     color: rgba(0, 0, 0, 0.87);
 }
-.red-500, .red-600, .red-700, .red-800, .red-900, .red-a200, .red-a400, .red-a700, .pink-500, .pink-600, .pink-700, .pink-800, .pink-900, .pink-a200, .pink-a400, .pink-a700, .purple-500, .purple-600, .purple-700, .purple-800, .purple-900, .purple-a200, .purple-a400, .purple-a700, .deep-purple-500, .deep-purple-600, .deep-purple-700, .deep-purple-800, .deep-purple-900, .deep-purple-a200, .deep-purple-a400, .deep-purple-a700, .indigo-500, .indigo-600, .indigo-700, .indigo-800, .indigo-900, .indigo-a200, .indigo-a400, .indigo-a700, .blue-500, .blue-600, .blue-700, .blue-700, .blue-900, .blue-a200, .blue-a400, .blue-a700, .light-blue-600, .light-blue-700, .light-blue-800, .light-blue-900, .light-blue-a700, .cyan-700, .cyan-800, .cyan-900, .black, .teal-500, .teal-600, .teal-700, .teal-800, .teal-900, .green-600, .grey-700, .grey-800, .green-900, .light-green-700, .light-green-800, .light-green-900, .lime-900, .orange-800, .orange-900, .deep-orange-500, .deep-orange-600, .deep-orange-700, .deep-orange-800, .deep-orange-900, .deep-orange-a400, .deep-orange-a700, .brown-300, .brown-400, .brow-500, .brown-600, .brown-700, .brown-800, .brown-900, .grey-600, .grey-700, .grey-800, .grey-900, .blue-grey-400, .blue-grey-500, .blue-grey-600, .blue-grey-700, .blue-grey-800, .blue-grey-900, .tooltip, .toast{
+.red-500, .red-600, .red-700, .red-800, .red-900, .red-a200, .red-a400, .red-a700, .pink-500, .pink-600, .pink-700, .pink-800, .pink-900, .pink-a200, .pink-a400, .pink-a700, .purple-500, .purple-600, .purple-700, .purple-800, .purple-900, .purple-a200, .purple-a400, .purple-a700, .deep-purple-500, .deep-purple-600, .deep-purple-700, .deep-purple-800, .deep-purple-900, .deep-purple-a200, .deep-purple-a400, .deep-purple-a700, .indigo-500, .indigo-600, .indigo-700, .indigo-800, .indigo-900, .indigo-a200, .indigo-a400, .indigo-a700, .blue-500, .blue-600, .blue-700, .blue-700, .blue-900, .blue-a200, .blue-a400, .blue-a700, .light-blue-600, .light-blue-700, .light-blue-800, .light-blue-900, .light-blue-a700, .cyan-700, .cyan-800, .cyan-900, .teal-500, .teal-600, .teal-700, .teal-800, .teal-900, .green-600, .grey-700, .grey-800, .green-900, .light-green-700, .light-green-800, .light-green-900, .lime-900, .orange-800, .orange-900, .deep-orange-500, .deep-orange-600, .deep-orange-700, .deep-orange-800, .deep-orange-900, .deep-orange-a400, .deep-orange-a700, .brown-300, .brown-400, .brown-500, .brown-600, .brown-700, .brown-800, .brown-900, .grey-600, .grey-700, .grey-800, .grey-900, .blue-grey-400, .blue-grey-500, .blue-grey-600, .blue-grey-700, .blue-grey-800, .blue-grey-900, .black, .red-500 .icon, .red-600 .icon, .red-700 .icon, .red-800 .icon, .red-900 .icon, .red-a200 .icon, .red-a400 .icon, .red-a700 .icon, .pink-500 .icon, .pink-600 .icon, .pink-700 .icon, .pink-800 .icon, .pink-900 .icon, .pink-a200 .icon, .pink-a400 .icon, .pink-a700 .icon, .purple-500 .icon, .purple-600 .icon, .purple-700 .icon, .purple-800 .icon, .purple-900 .icon, .purple-a200 .icon, .purple-a400 .icon, .purple-a700 .icon, .deep-purple-500 .icon, .deep-purple-600 .icon, .deep-purple-700 .icon, .deep-purple-800 .icon, .deep-purple-900 .icon, .deep-purple-a200 .icon, .deep-purple-a400 .icon, .deep-purple-a700 .icon, .indigo-500 .icon, .indigo-600 .icon, .indigo-700 .icon, .indigo-800 .icon, .indigo-900 .icon, .indigo-a200 .icon, .indigo-a400 .icon, .indigo-a700 .icon, .blue-500 .icon, .blue-600 .icon, .blue-700 .icon, .blue-700 .icon, .blue-900 .icon, .blue-a200 .icon, .blue-a400 .icon, .blue-a700 .icon, .light-blue-600 .icon, .light-blue-700 .icon, .light-blue-800 .icon, .light-blue-900 .icon, .light-blue-a700 .icon, .cyan-700 .icon, .cyan-800 .icon, .cyan-900 .icon, .teal-500 .icon, .teal-600 .icon, .teal-700 .icon, .teal-800 .icon, .teal-900 .icon, .green-600 .icon, .grey-700 .icon, .grey-800 .icon, .green-900 .icon, .light-green-700 .icon, .light-green-800 .icon, .light-green-900 .icon, .lime-900 .icon, .orange-800 .icon, .orange-900 .icon, .deep-orange-500 .icon, .deep-orange-600 .icon, .deep-orange-700 .icon, .deep-orange-800 .icon, .deep-orange-900 .icon, .deep-orange-a400 .icon, .deep-orange-a700 .icon, .brown-300 .icon, .brown-400 .icon, .brown-500 .icon, .brown-600 .icon, .brown-700 .icon, .brown-800 .icon, .brown-900 .icon, .grey-600 .icon, .grey-700 .icon, .grey-800 .icon, .grey-900 .icon, .blue-grey-400 .icon, .blue-grey-500 .icon, .blue-grey-600 .icon, .blue-grey-700 .icon, .blue-grey-800 .icon, .blue-grey-900 .icon, .black .icon, .white-text, .tooltip, .toast{
     color: #FFFFFF;
 }
 
@@ -898,7 +1683,7 @@ a{
     z-index: 1;
     box-shadow: 0px 1px 2px rgba(0,0,0,0.24);
 }
-.elevation-2, .button.raised, .card{
+.elevation-2, .button.raised, .card, .chip:active, .chip.active{
     z-index: 2;
     box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.16), 0px 2px 1px 0.1px rgba(0,0,0,0.1);
 }
@@ -985,7 +1770,7 @@ a{
     pointer-events: none;
 }
 .ripple .wave, .button .wave, .tab .wave{
-    background-color: rgba(0, 0, 0, 0.54);
+    background-color: rgba(0, 0, 0, 0.38);
     transition: transform 0.425s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.425s cubic-bezier(0.4, 0.0, 0.2, 1); 
 }
 .radial .wave, .radio .wave, .checkbox .wave{
@@ -1034,6 +1819,9 @@ a{
 .valign{
     align-items: center;
 }
+.hide{
+    display: none;
+}
 .row{
     padding: 4px;
     display: flex;
@@ -1077,6 +1865,42 @@ a{
 }
 .col-12, .banner{
     width: 100%;
+}
+.offset-1{
+    margin-left: 8.33333333333333%;
+}
+.offset-2{
+    margin-left: 16.66666666666667%;
+}
+.offset-3{
+    margin-left: 25%;
+}
+.offset-4{
+    margin-left: 33.33333333333333%;
+}
+.offset-5{
+    margin-left: 41.66666666666667%;
+}
+.offset-6{
+    margin-left: 50%; 
+}
+.offset-7{
+    margin-left: 58.33333333333333%;
+}
+.offset-8{
+    margin-left: 66.66666666666667%;
+}
+.offset-9{
+    margin-left: 75%;
+}
+.offset-10{
+    margin-left: 83.33333333333333%;
+}
+.offset-11{
+    margin-left: 91.66666666666667%;
+}
+.offset-12{
+    margin-left: 100%;
 }
 .row [class^="col"]{
     padding: 4px;
@@ -1135,6 +1959,42 @@ a{
     .t-12{
         width: 100%;
     }
+    .offset-t-1{
+        margin-left: 8.33333333333333%;
+    }
+    .offset-t-2{
+        margin-left: 16.66666666666667%;
+    }
+    .offset-t-3{
+        margin-left: 25%;
+    }
+    .offset-t-4{
+        margin-left: 33.33333333333333%;
+    }
+    .offset-t-5{
+        margin-left: 41.66666666666667%;
+    }
+    .offset-t-6{
+        margin-left: 50%; 
+    }
+    .offset-t-7{
+        margin-left: 58.33333333333333%;
+    }
+    .offset-t-8{
+        margin-left: 66.66666666666667%;
+    }
+    .offset-t-9{
+        margin-left: 75%;
+    }
+    .offset-t-10{
+        margin-left: 83.33333333333333%;
+    }
+    .offset-t-11{
+        margin-left: 91.66666666666667%;
+    }
+    .offset-t-12{
+        margin-left: 100%;
+    }
     .hide-on-t{
         display: none !important;
     }       
@@ -1177,6 +2037,42 @@ a{
     .p-12{
         width: 100%;
     }
+    .offset-p-1{
+        margin-left: 8.33333333333333%;
+    }
+    .offset-p-2{
+        margin-left: 16.66666666666667%;
+    }
+    .offset-p-3{
+        margin-left: 25%;
+    }
+    .offset-p-4{
+        margin-left: 33.33333333333333%;
+    }
+    .offset-p-5{
+        margin-left: 41.66666666666667%;
+    }
+    .offset-p-6{
+        margin-left: 50%; 
+    }
+    .offset-p-7{
+        margin-left: 58.33333333333333%;
+    }
+    .offset-p-8{
+        margin-left: 66.66666666666667%;
+    }
+    .offset-p-9{
+        margin-left: 75%;
+    }
+    .offset-p-10{
+        margin-left: 83.33333333333333%;
+    }
+    .offset-p-11{
+        margin-left: 91.66666666666667%;
+    }
+    .offset-p-12{
+        margin-left: 100%;
+    }
     .hide-on-p{
         display: none !important;
     }
@@ -1201,6 +2097,9 @@ button, a.button{
 }
 .button{
     border: none;
+}
+.button, .button .icon, .switch, .radio, .checkbox{
+    vertical-align: middle;
 }
 .button, .tabs{
     font-size: 14px;
@@ -1354,6 +2253,7 @@ a.button.flat, a.button.raised{
 
 .chips{
     position: relative;
+    padding-bottom: 2px;
 }
 .chips label{
     padding: 12px;
@@ -1405,10 +2305,13 @@ a.button.flat, a.button.raised{
 }
 .chip .icon{
     left: 12px;
-    font-size: 1em;
+    font-size: 1.25em;
     position: relative;
     vertical-align: middle;
     margin: 0px 4px 0px -12px;
+}
+.chip:active{
+    background-color: #D6D6D6;
 }
 
 /* Selection controls */
@@ -1578,7 +2481,10 @@ ul.list, ol.list{
 }
 .list .item{
     display: flex;
-    padding: 8px 16px 8px 16px;
+}
+.list .item, .list .item.expansion > a{
+    padding: 16px;
+    line-height: 1;
 }
 .list .item > img{
     max-height: 40px;
@@ -1591,23 +2497,22 @@ ul.list, ol.list{
 .list .item .content.single-line{
     margin-top: 1.5px;
 }
+.list .item .list .item.expansion > a, .list .item .list .item:not(.expansion){
+    padding: 12px 32px 12px 32px;
+}
 
 /* Expansion panels */
 
 .list .item.expansion{
+    padding: 0px;
     display: block;
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-.list .item.expansion > a{
-    line-height: 48px;
 }
 .list .item.expansion .content, .expansion-panel .item .content{
     display: none;
     overflow: hidden;
     transition: height 0.225s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
-.list .item.expansion.active .content, .expansion-panel .item.active .content{
+.list .item.expansion > a, .list .item.expansion.active .content, .expansion-panel .item.active .content{
     display: block;
 }
 
@@ -1828,6 +2733,7 @@ ul.list, ol.list{
     width: 256px;
     height: 100%;
     position: fixed;
+    overflow-y: auto;
     background-color: #FFFFFF;
     transform: translateX(-100%);
     transition: transform 0.195s cubic-bezier(0.4, 0.0, 0.6, 1);
@@ -1836,7 +2742,7 @@ ul.list, ol.list{
     transform: translateX(0%);
     transition: transform 0.225s cubic-bezier(0.0, 0.0, 0.2, 1);
 }
-.navbar .list .item:hover{
+.navbar .list .item:not(.expansion):hover, .navbar .list .item > a:hover{
     background-color: rgba(0, 0, 0, 0.12);
 }
 
@@ -1886,4 +2792,100 @@ ul.list, ol.list{
 }
 .tabs-content > *.show{
     display: block;
+}
+
+/* Progress & activity */
+
+.progress{
+    overflow: hidden;
+    position: relative;
+}
+.progress.linear{
+    height: 4px;
+}
+.progress.linear.determinate::before, .progress.linear.indeterminate::before, .progress.linear.query::before{
+    content: "";
+    width: 100%;
+    background-color: #90CAF9;
+}
+.progress.linear.determinate .bar{
+    transition: width 0.225s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+.progress.linear.determinate .bar, .progress.linear.indeterminate .bar::before, .progress.linear.indeterminate .bar::after, .progress.linear.query .bar::before, .progress.linear.query .bar::after{
+    background-color: #2196F3;
+}
+.progress.linear.determinate::before, .progress.linear.indeterminate::before, .progress.linear.query::before, .progress.linear.determinate .bar, .progress.linear.indeterminate .bar::before, .progress.linear.indeterminate .bar::after, .progress.linear.query .bar::before, .progress.linear.query .bar::after{
+    height: 100%;
+    position: absolute;
+}
+.progress.linear.indeterminate .bar::before{
+    animation: progress-liner-indeterminate-1 2.5s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+.progress.linear.indeterminate .bar::after{
+    animation: progress-liner-indeterminate-2 2.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+.progress.linear.query .bar::before{
+    animation: progress-liner-query-1 2.5s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+.progress.linear.query .bar::after{
+    animation: progress-liner-query-2 2.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+.progress.linear.indeterminate .bar::after, .progress.linear.query .bar::after{
+    animation-delay: 1.3s;
+}
+.progress.linear.indeterminate .bar::before, .progress.linear.indeterminate .bar::after, .progress.linear.query .bar::before, .progress.linear.query .bar::after{
+    content: "";
+    animation-iteration-count: infinite;
+}
+
+@keyframes progress-liner-indeterminate-1{
+    0%{
+        left: -60%;
+        right: 100%; 
+    }
+    100%{
+        left: 102%;
+        right: -60%; 
+    }
+}
+
+@keyframes progress-liner-indeterminate-2{
+    0%{
+        left: -180%;
+        right: 120%; 
+    }
+    60%{
+        left: 110%;
+        right: -12%; 
+    }
+    100%{
+        left: 110%;
+        right: -12%; 
+    }
+}
+
+@keyframes progress-liner-query-1{
+    0%{
+        left: 100%;
+        right: -60%; 
+    }
+    100%{
+        left: -60%;
+        right: 102%; 
+    }
+}
+
+@keyframes progress-liner-query-2{
+    0%{
+        left: 120%;
+        right: -180%; 
+    }
+    60%{
+        left: -12%;
+        right: 110%; 
+    }
+    100%{
+        left: -12%;
+        right: 110%; 
+    }
 }

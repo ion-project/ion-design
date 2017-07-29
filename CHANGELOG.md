@@ -1,4 +1,7 @@
-# IonDesign version 0.12
+# IonDesign version 0.12.1
+
+## version 0.12.1
+- fixed the color of links, implementing the .link class
 
 ## version 0.12 2017-07-14
 - add Material colors text

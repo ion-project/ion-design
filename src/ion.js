@@ -7,7 +7,7 @@ var hideOverlay, closeDialog, responsiveDialog, newToast, otherToast, hideToast,
 
 function IonFramework(){
     
-    this.version = "0.12";
+    this.version = "0.12.1";
 
 }
 

@@ -7,6 +7,8 @@
     </head>
     <body>
 
+        <a href="http://www.google.com" class="link">Google</a>
+
         <button class="button flat">OVERLAY</button>
         <button class="button raised">OVERLAY</button>
 
@@ -38,7 +40,32 @@
     </body>
 
     <script src="../src/ion.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-        
+        var t0, t1;
+
+        t0 = performance.now();
+
+        Ion.get("button");
+
+        t1 = performance.now();
+
+        console.log('Ion: Ion.get("button") - ', t1 - t0);
+
+        t0 = performance.now();
+
+        $("button");
+
+        t1 = performance.now();
+
+        console.log('JQuery: $("button") - ', t1 - t0);
+
+        t0 = performance.now();
+
+        document.querySelectorAll("button");
+
+        t1 = performance.now();
+
+        console.log('Pure Javascript: document.querySelectorAll("button") - ', t1 - t0);
     </script>
 </html>

@@ -1818,7 +1818,7 @@ a{
     max-width: 1024px;
 }
 .banner{
-    height: 100vh;
+    min-height: 100vh;
 }
 .responsive{
     overflow-x: auto;
@@ -2576,7 +2576,7 @@ ul.list, ol.list{
     margin-top: 64px;
 }
 .toolbar.fixed ~ .container .banner:first-child{
-    height: calc(100vh - 64px);
+    min-height: calc(100vh - 64px);
 }
 
 @media (max-width: 380px){

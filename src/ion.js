@@ -204,7 +204,8 @@ responsiveDialog = function(){
 }
 
 closeDialog = function(){
-
+    Ion.overlay(false);
+    Ion.get(".dialog").remove();
 }
 
 IonFramework.fn.dialog = function(data){
@@ -278,10 +279,20 @@ IonFramework.fn.dialog = function(data){
         $overlay = Ion.get("#overlay");
         $overlay.append($dialog);
 
+        if(data.dismissible){
+            $overlay.on("click", closeDialog);
+        }
+        else{
+            $overlay[0].removeEventListener("click", closeDialog);
+        }
+
         responsiveDialog();
 
         window.getComputedStyle($dialog).opacity;
         $dialog.classList.add("show");
+        $dialog.onclick = function(event){
+            event.stopPropagation();
+        }
 
         Ion.get(window).on("resize", responsiveDialog);
     }

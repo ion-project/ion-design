@@ -1,5 +1,8 @@
 # IonDesign version 0.12.1
 
+## version 0.12.2 2017-09-20
+- add progress linear buffer
+
 ## version 0.12.1 2017-07-29 to 2017-08-02
 - fixed the color of links, implementing the .link class
 - fixed the .banner height

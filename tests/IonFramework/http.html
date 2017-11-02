@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>http - IonFramework</title>
+
+        <meta charset="UTF-8" />
+    </head>
+
+    <body>
+        
+    </body>
+
+    <script src="../../src/ion.js"></script>
+    <script>
+        Ion.http("https://maps.googleapis.com/maps/api/geocode/json?address=Silicon Valley, CA, EUA", {
+            success: function(data){
+                console.log(data);
+                alert("Success");
+            },
+            error: function(data){
+                console.log(data);
+                alert("Error");
+            }
+        });
+    </script>
+</html>

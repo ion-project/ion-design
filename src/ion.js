@@ -7,7 +7,7 @@ var hideOverlay, closeDialog, responsiveDialog, newToast, otherToast, hideToast,
 
 function IonFramework(){
     
-    this.version = "0.12.1";
+    this.version = "0.12.5";
 
 }
 
@@ -204,7 +204,8 @@ responsiveDialog = function(){
 }
 
 closeDialog = function(){
-
+    Ion.overlay(false);
+    Ion.get(".dialog").remove();
 }
 
 IonFramework.fn.dialog = function(data){
@@ -278,10 +279,20 @@ IonFramework.fn.dialog = function(data){
         $overlay = Ion.get("#overlay");
         $overlay.append($dialog);
 
+        if(data.dismissible){
+            $overlay.on("click", closeDialog);
+        }
+        else{
+            $overlay[0].removeEventListener("click", closeDialog);
+        }
+
         responsiveDialog();
 
         window.getComputedStyle($dialog).opacity;
         $dialog.classList.add("show");
+        $dialog.onclick = function(event){
+            event.stopPropagation();
+        }
 
         Ion.get(window).on("resize", responsiveDialog);
     }
@@ -361,6 +372,37 @@ IonFramework.fn.createEvent = function(name, parameters){
     return new CustomEvent(name, parameters);
 }
 
+IonFramework.fn.http = function(url, data, user, password){
+    var xhttp;
+
+    if(typeof data == "object"){
+        xhttp = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+        
+        xhttp.onreadystatechange = function(){
+            if(this.readyState == 4){
+                if(this.status >= 200 && this.status < 300 || this.status == 304){
+                    if(typeof data.success === "function"){
+                        data.success(this);
+                    }
+                }
+                else{
+                    if(typeof data.error === "function"){
+                        data.error(this);
+                    }
+                }
+            }
+        }
+
+        data.method = data.method ? data.method : "GET";
+        data.async = data.async ? data.async : true;
+        
+        xhttp.open(data.method, url, data.async, user, password);
+        xhttp.send(data.data);
+    }
+
+    return xhttp;
+}
+
 IonFramework.fn.run = function(){
     var $element;
 
@@ -377,9 +419,9 @@ IonFramework.fn.run = function(){
         if(event.target.nodeName == "HEADER" && Ion.get(event.target).parents(".expansion-panel").length){
             Ion.get(event.target.parentNode).expansionPanel();
         }
-    });
-
-    Ion.get(document).on("mousedown", function(event){
+    })
+    
+    .on("mousedown", function(event){
         $element = Ion.get(event.target);
 
         if($element.hasClass("ripple") || $element.hasClass("button") || $element.hasClass("tab")){
@@ -388,26 +430,26 @@ IonFramework.fn.run = function(){
         if($element.hasClass("radial") || $element.hasClass("radio") || $element.hasClass("checkbox")){
             $element.flatRipple();
         }
-    });
-
-    Ion.get(document).on("mousemove", function(event){
+    })
+    
+    .on("mousemove", function(event){
         $element = Ion.get(event.target);
 
         if($element.getAttr("data-tooltip")){
             $element.tooltip();
         }
-    });
+    })
 
-    Ion.get(document).on("focus", function(event){
+    .on("focus", function(event){
         $element = Ion.get(event.target);
 
         if(event.target.nodeName == "INPUT" && Ion.get(event.target).parents(".searchbar.fixed").length){
             Ion.searchbar.fixed(event, true);
         }
-    }, true);
+    }, true)
 
-    Ion.get(document).on("blur", function(event){
-        if(event.target.nodeName == "INPUT"){
+    .on("blur", function(event){
+        if(event.target.nodeName == "INPUT" && Ion.get(event.target).parents(".text-field").length){
             Ion.get(event.target).input();
         }
         if(event.target.nodeName == "INPUT" && Ion.get(event.target).parents(".searchbar.fixed").length){
@@ -655,6 +697,16 @@ IonSelector.fn.next = function(selector){
     return this.new(results);
 }
 
+IonSelector.fn.clone = function(deep){
+    var results = [];
+
+    this.each(function(){
+        results.push(this.cloneNode(deep));
+    });
+
+    return this.new(results);
+}
+
 IonSelector.fn.i = function(index){
     if(this[index]){
         return Ion.get(this[index]);
@@ -828,12 +880,32 @@ IonSelector.fn.append = function($element){
     this.each(function(){
         this.appendChild($element);
     });
+
+    return this;
 }
 
 IonSelector.fn.prepend = function($element){
     this.each(function(){
         this.insertBefore($element, this.firstChild);
     });
+
+    return this;
+}
+
+IonSelector.fn.appendTo = function(selector){
+    this.each(function(){
+        Ion.get(selector).append(this);
+    });
+
+    return this;
+}
+
+IonSelector.fn.prependTo = function(selector){
+    this.each(function(){
+        Ion.get(selector).prepend(this);
+    });
+    
+    return this;
 }
 
 IonSelector.fn.insertBefore = function($element){
@@ -842,6 +914,8 @@ IonSelector.fn.insertBefore = function($element){
             this.parentNode.insertBefore($element, this);
         }
     });
+
+    return this;
 }
 
 IonSelector.fn.insertAfter = function($element){
@@ -850,6 +924,8 @@ IonSelector.fn.insertAfter = function($element){
             this.parentNode.insertBefore($element, this.nextSibling);
         }
     });
+
+    return this;
 }
 
 IonSelector.fn.remove = function(){
@@ -1512,10 +1588,335 @@ IonSelector.fn.chips = function(data){
     });
 }
 
+IonSelector.fn.view = function(controller, options){
+    if(this.length){
+        return new IonView(this[0], controller, options);
+    }
+}
+
 Ion.run();
 
 window.Ion = Ion;
 
+})();
+
+(function(){
+    var reserved = ["(model)", "(if)"], expPattern = "[A-Za-z1-9_$\\+\\-\\/\\*\\s\\n]+", reflectPattern = /\(\w+\)/, all = /(.)/g, escAll = '\\$1',
+    viewGet, viewSet, viewUpdate, viewInit, viewParse, viewGetAttributes, viewAddEvent, viewComponentModels, viewAttrModels, viewTextModels, viewConvertModels, viewUpdateModel, viewSetParamsValues, viewUpdateComponent, viewGetComponentExpression, viewExecFunction, viewGetAttr, viewReflectAttr, viewBindOriginalVal;
+    
+    viewBindOriginalVal = function($element, attr, value){
+        attr = attr.replace(/(\(|\))/g, "");
+
+        $element.setAttribute(attr, value);
+    }
+
+    viewReflectAttr = function(attr, component){
+        var value = viewExecFunction(viewGetAttr(component.src.attributes, attr), this.config.params, this.config.values);
+
+        viewBindOriginalVal(component.element, attr, value);
+    }
+
+    viewGetAttr = function(attributes, name){
+        var i = 0;
+
+        for(; i < attributes.length; i = i + 1){
+            if(attributes[i].name == name){
+                return attributes[i].value;
+            }
+        }
+
+        return null;
+    }
+
+    viewExecFunction = function(expression, params, values){   
+        return new Function("return function(" + params + "){return " + expression + "}(" + values + ");")();
+    }
+    
+    viewGetComponentExpression = function(expression){
+        var expression, expRegex = new RegExp(this.config.startDelimiter + "(" + expPattern + ")" + this.config.endDelimiter, "g");
+    
+        expression = "'" + expression + "'";
+        expression = expression.replace(expRegex, "' + ($1) + '").replace(/\n+/g, "\\n");
+    
+        return expression;
+    }
+    
+    viewUpdateComponent = function(component){
+        var i, attr;
+    
+        if(component.element.nodeType === Node.TEXT_NODE){
+            component.element.textContent = viewExecFunction(viewGetComponentExpression.call(this, component.src.textContent), this.config.params, this.config.values);
+        }
+        else{
+            for(i = 0; i < component.src.attributes.length; i = i + 1){
+                attr = component.src.attributes[i];
+                
+                if(reserved.indexOf(attr.name) != -1){
+
+                }
+                else if(attr.name.match(reflectPattern)){
+                    viewReflectAttr.call(this, attr.name, component);
+                }
+            }
+        }
+    }
+    
+    viewSetParamsValues = function(){
+        var m, params = "", values = "", value;
+    
+        for(m in this.models){
+            params = params + m + ", ";
+    
+            value = this.models[m];
+    
+            if(typeof this.models[m] === "string"){
+                value = "'" + this.models[m].replace(/'/g, "\\'") + "'";
+            }
+            else if(typeof this.models[m] === "object"){
+                value = JSON.stringify(this.models[m]);
+            }
+    
+            values = values + value + ", ";
+        }
+    
+        this.config.params = params.substr(0, params.length - 2);
+        this.config.values = values.substr(0, values.length - 2);
+    }
+    
+    viewUpdateModel = function(tree, key){
+        var i;
+    
+        for(i = 0; i < tree.length; i = i + 1){
+            if(tree[i].models && (!key || tree[i].models.indexOf(key) != -1)){
+                viewUpdateComponent.call(this, tree[i]);
+            }
+            
+            if(tree[i].children){
+                viewUpdateModel.call(this, tree[i].children, key);
+            }
+        }
+    }
+    
+    viewConvertModels = function(models, startDelimiter, endDelimiter){
+        var i, j, split, result = [];
+    
+        for(i = 0; i < models.length; i = i + 1){
+            split = models[i].replace(startDelimiter, "").replace(endDelimiter, "");
+            split = split.split(/[^A-Za-z1-9_$]+/);
+    
+            for(j = 0; j < split.length; j = j + 1){
+                result.push(split[j]);
+            }
+        }
+    
+        return result;
+    }
+    
+    viewAttrModels = function(component){
+        var i, j, result = [], matches;
+    
+        for(i = 0; i < component.src.attributes.length; i = i + 1){
+            
+            if(reserved.indexOf(component.src.attributes[i].name) != -1){
+                
+            }
+            else if(component.src.attributes[i].name.match(reflectPattern)){
+                matches = component.src.attributes[i].value.match(expPattern);
+            }
+    
+            if(matches){
+                for(j = 0; j < matches.length; j = j + 1){
+                    result.push(matches[i]);
+                }
+            }
+        }
+    
+        return result;
+    }
+    
+    viewTextModels = function(component, pattern){
+        var i, result = [], matches = component.src.textContent.match(pattern);
+    
+        if(matches){
+            for(i = 0; i < matches.length; i = i + 1){
+                result.push(matches[i]);
+            }
+        }
+    
+        return result;
+    }
+    
+    viewComponentModels = function(component, pattern, startDelimiter, endDelimiter, deep){
+        var models;
+    
+        if(component.element.nodeType === Node.TEXT_NODE){
+            models = viewTextModels(component, pattern, startDelimiter, endDelimiter);
+        }
+        else{
+            if(deep){
+                models = viewAttrModels(component, pattern);
+                models = models.concat(viewTextModels(component, pattern, startDelimiter, endDelimiter));
+            }
+            else{
+                models = viewAttrModels(component, pattern, startDelimiter, endDelimiter);
+            }
+        }
+    
+        return viewConvertModels(models, startDelimiter, endDelimiter);
+    }
+    
+    viewAddEvent = function($element, model){
+        var ref = this, events;
+    
+        if($element.tagName == "SELECT" || ($element.tagName == "INPUT" && ($element.type == "checkbox" || $element.type == "radio"))){
+            events = "change";
+        }
+        else{
+            events = "input change";
+        }
+    
+        Ion.get($element).on(events, function(e){
+            viewSet.call(ref, model, e.target.value);
+        });
+    }
+
+    viewGetAttributes = function($element){
+        var i = 0, result = [];
+        
+        if($element.attributes){
+            for(; i < $element.attributes.length; i = i + 1){
+
+                result.push({
+                    name: $element.attributes[i].name,
+                    value: $element.attributes[i].value
+                });
+
+                if($element.attributes[i].name.match(reflectPattern)){
+                    $element.removeAttribute($element.attributes[i].name)
+                }
+            }
+        }
+
+        return result;
+    }
+    
+    viewParse = function(array, $element){
+        var i, prop, childs = $element.childNodes, models, model;
+        
+        if(childs){
+            for(i = 0; i < childs.length; i = i + 1){
+                if(childs[i].tagName){
+                    model = childs[i].getAttribute("(model)");
+    
+                    if(model){
+                        viewAddEvent.call(this, childs[i], model);
+                        viewSet.call(this, model, childs[i].value);
+                    }
+                }
+    
+                prop = {
+                    element: childs[i],
+                    src: {
+                        attributes: viewGetAttributes(childs[i]),
+                        textContent: childs[i].textContent
+                    }
+                }
+    
+                if(childs[i].childNodes && childs[i].childNodes.length){
+                    prop.children = [];
+    
+                    models = viewComponentModels(prop, this.config.pattern, this.config.startDelimiter, this.config.endDelimiter, false);
+                    viewParse.call(this, prop.children, childs[i]);
+                }
+                else{
+                    models = viewComponentModels(prop, this.config.pattern, this.config.startDelimiter, this.config.endDelimiter, true);
+                }
+    
+                if(models.length){
+                    prop.models = models;
+                }
+    
+                array.push(prop);
+            }
+        }
+    }
+    
+    viewInit = function(options){
+        viewUpdateModel.call(this, this.tree);
+    
+        this.ready = true;
+    
+        if(options && typeof options.ready === "function"){
+            options.ready();
+        }
+    }
+
+    viewUpdate = function(key, value){
+        new Function("prop", "value", "prop." + key + " = value")(this.models, value)
+
+        viewSetParamsValues.call(this);
+        viewUpdateModel.call(this, this.tree);
+    }
+    
+    viewSet = function(key, value){
+        this.models[key] = value;
+    
+        viewSetParamsValues.call(this);
+        
+        if(this.ready){
+            viewUpdateModel.call(this, this.tree, key);
+        }
+    }
+    
+    viewGet = function(key){
+        return this.models[key];
+    }
+    
+    function IonView($element, controller, options){
+        this.tree = [];
+        this.models = [];
+        this.ready = false;
+    
+        this.config = {};
+        this.config.startDelimiter = "{{";
+        this.config.endDelimiter = "}}";
+    
+        if(options){
+            if(options.startDelimiter){
+                this.config.startDelimiter = options.startDelimiter.replace(all, escAll);
+            }
+    
+            if(options.endDelimiter){
+                this.config.endDelimiter = options.endDelimiter.replace(all, escAll);
+            }
+    
+            if(typeof options.start === "function"){
+                options.start();
+            }
+        }
+    
+        this.config.pattern = new RegExp(this.config.startDelimiter + expPattern + this.config.endDelimiter, "g");
+     
+        controller.call(this);
+        viewParse.call(this, this.tree, $element);
+        viewInit.call(this, options);
+    }
+
+    IonView.fn = IonView.prototype;
+    
+    IonView.fn.get = function(key){
+        return viewGet.call(this, key);
+    }
+    
+    IonView.fn.set = function(key, value){
+        viewSet.call(this, key, value);
+    }
+
+    IonView.fn.update = function(key, value){
+        viewUpdate.call(this, key, value);
+    }
+
+    window.IonView = IonView;
 })();
 
 (function(){

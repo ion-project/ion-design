@@ -1,4 +1,17 @@
-# IonDesign version 0.12.1
+# IonDesign version 0.12.5
+
+## version 0.12.5 2017-11-02
+- add http (Ajax) - IonFramework
+
+## version 0.12.3 2017-10-26 to 2017-10-31
+- add appendTo DOM function
+- add prependTo DOM function
+- fixed bug that added .active class to all inputs instead just in .text-field
+- start IonView (template engine)
+
+## version 0.12.2 2017-09-20
+- add progress linear buffer
+- add cloneNode DOM function
 
 ## version 0.12.1 2017-07-29 to 2017-08-02
 - fixed the color of links, implementing the .link class

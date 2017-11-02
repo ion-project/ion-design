@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>http - IonSelector</title>
+
+        <meta charset="UTF-8" />
+    </head>
+
+    <body>
+        <p id="um">dhasdjhaskjdh <i>jksahdgasjkgdajshdg</i></p>
+        <p id="dois">kkkljlkjlkjlk <span>ksjahdakjshdkjas</span></p>
+    </body>
+
+    <script src="../../src/ion.js"></script>
+    <script>
+        console.log(Ion.get("p").clone());
+
+        Ion.get("#dois").clone().prependTo("i");
+    </script>
+</html>

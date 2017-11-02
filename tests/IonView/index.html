@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Index - IonView</title>
+
+        <meta charset="UTF-8" />
+    </head>
+
+    <body>
+        <h1>Titulo: {{titulo}} {{a}} <i>Hey {{teste}}</i></h1>
+        Subtítulo: {{subtitulo}}
+        <img (src)="src+dois" />
+        <input (model)="titulo" placeholder="Titulo" />
+        <input (model)="dois" placeholder="Subtitulo" />
+    </body>
+
+    <script src="../../src/ion.js"></script>
+    <script>
+        var controller = Ion.get("body").view(function(){
+            this.set("titulo", "Teste");
+            this.set("a", "AAA");
+            this.set("teste", "sdkjhdkjash");
+            this.set("subtitulo", "____");
+            this.set("src", "https://picsum.photos/300/200?image=");
+            this.set("dois", 5);
+            this.update("a.um", 3);
+        }, {
+            start: function(){
+                console.log("IonView start!");
+            },
+            ready: function(){
+                console.log("IonView ready!");
+            }
+        });
+    </script>
+</html>

@@ -2470,10 +2470,9 @@ table.table tr th{
     padding: 22px 24px 22px 24px;
 }
 table.table tr td{
-    text-align: center;
     padding: 17px 24px 17px 24px;
 }
-table.table tr th, table.table tr td:first-child{
+table.table tr th{
     text-align: left;
 }
 

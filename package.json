@@ -1,0 +1,35 @@
+{
+  "name": "ion-design",
+  "version": "0.12.5",
+  "description": "The fast, lightweight and beautiful framework inspired by Material Design",
+  "main": "src/ion.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ion-project/ion-design.git.git"
+  },
+  "keywords": [
+    "Ion",
+    "IonDesign",
+    "css",
+    "javascript",
+    "Material Design",
+    "frontend",
+    "framework"
+  ],
+  "author": "Ion",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ion-project/ion-design.git/issues"
+  },
+  "homepage": "https://github.com/ion-project/ion-design.git#readme",
+  "files": [
+    "src/",
+    "LICENSE"
+  ]
+}

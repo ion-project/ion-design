@@ -38,7 +38,7 @@ The following documentation is a reference to the elements of IonDesign.
 
 The IonDesign components based on Material Design are projected to compose accessible, reactive, and unified interface and experience. The natural interactive, use of lights, movement, surface, shapes, textures and colors are key of this design philosophy.
 
-[Documentation access](https://ion-project.github.io/documentation/)
+[Documentation access.](https://ion-project.github.io/documentation/)
 
 - Components List
     - [Buttons](https://ion-project.github.io/components/#buttons)
@@ -46,7 +46,7 @@ The IonDesign components based on Material Design are projected to compose acces
     - [Chips](https://ion-project.github.io/components/#chips)
     - [Dialogs](https://ion-project.github.io/components/#dialogs)
     - [Dividers](https://ion-project.github.io/components/#dividers)
-    - [Expansion panels](https://ion-project.github.io/components/#dividers)
+    - [Expansion panels](https://ion-project.github.io/components/#expansion-panels)
     - [Grid lists](https://ion-project.github.io/components/#grid)
     - [Lists](https://ion-project.github.io/components/#lists)
     - [Menus](https://ion-project.github.io/components/#menus)

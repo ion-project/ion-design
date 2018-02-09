@@ -1,4 +1,4 @@
-/* IonDesign - version 0.12.1 */
+/* IonDesign - version 0.12.5 */
 
 @import "https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500";
 
@@ -2676,7 +2676,7 @@ ul.list, ol.list{
     top: 0px;
     left: 0px;
     opacity: 0;
-    z-index: 7;
+    z-index: 10;
     width: 100%;
     height: 100%;
     position: fixed;

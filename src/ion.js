@@ -1201,7 +1201,9 @@ IonSelector.fn.tooltip = function(){
     var $element = this[0],
         $tooltip,
         orientation,
-        position;
+        position,
+        scrollTop = document.body.scrollTop || document.documentElement.scrollTop,
+        scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
 
     if($element && $element != lastMousemoveTarget){
         lastMousemoveTarget = $element;
@@ -1242,8 +1244,8 @@ IonSelector.fn.tooltip = function(){
             break;
         }
 
-        $tooltip.style.top = position.y + document.body.scrollTop + "px";
-        $tooltip.style.left = position.x + document.body.scrollLeft + "px";
+        $tooltip.style.top = position.y + scrollTop + "px";
+        $tooltip.style.left = position.x + scrollLeft+ "px";
 
         window.getComputedStyle($tooltip).opacity;
 

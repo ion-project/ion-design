@@ -1,0 +1,53 @@
+id-button{
+  &.text, &.outlined{
+    button, a{
+      background-color: transparent;
+    }
+  }
+
+  &.text, &.contained{
+    button, a{
+      border: none;
+    }
+  }
+
+  &.outlined, &.contained{
+    button, a{
+      padding: 0 16px;
+    }
+  }
+
+  &.text{
+    button, a{
+      padding: 0 8px;
+    }
+  }
+
+  &.outlined{
+    button, a{
+      border: 1px solid rgba(0, 0, 0, 0.54);
+    }
+  }
+
+  &.contained{
+    button, a{
+      box-shadow: var(--id-elevation-2dp);
+      transition: box-shadow var(--id-motion-duration-simple) var(--id-motion-easing-standart);
+
+      &:active{
+        box-shadow: var(--id-elevation-8dp);
+      }
+    }
+  }
+
+  button, a{
+    height: 36px;
+    overflow: hidden;
+    border-radius: 4px;
+    position: relative;
+    font-weight: 500;
+    font-size: 0.875rem;
+    user-select: none;
+    text-transform: uppercase;
+  }
+}

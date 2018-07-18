@@ -1,0 +1,27 @@
+// Variables
+
+:root{
+    // Elevations
+
+    --id-elevation-2dp: 0 2px 4px rgba(0, 0, 0, 0.24);
+    --id-elevation-8dp: 0 8px 16px rgba(0, 0, 0, 0.24), 0 0 16px rgba(0, 0, 0, 0.3);
+
+    // Motion duration
+
+    --id-motion-duration-simple: 100ms;
+    
+    // Motion easing
+
+    --id-motion-easing-standart: cubic-bezier(0.4, 0.0, 0.2, 1);
+    --id-motion-easing-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
+    --id-motion-easing-accelerate: cubic-bezier(0.4, 0.0, 1, 1);
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
+
+// Global component styles
+
+body, button, input{
+    color: rgba(0, 0, 0, 0.87);
+    font-family: 'Roboto', sans-serif;
+}

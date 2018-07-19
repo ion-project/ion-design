@@ -43,10 +43,10 @@ id-button{
   button, a{
     height: 36px;
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: var(--id-border-radius);
     position: relative;
     font-weight: 500;
-    font-size: 0.875rem;
+    font-size: var(--id-typography-button);
     user-select: none;
     text-transform: uppercase;
   }

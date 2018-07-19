@@ -91,6 +91,39 @@ declare global {
   }
 }
 
+
+declare global {
+
+  namespace StencilComponents {
+    interface IdTooltip {
+      'text': string;
+    }
+  }
+
+  interface HTMLIdTooltipElement extends StencilComponents.IdTooltip, HTMLStencilElement {}
+
+  var HTMLIdTooltipElement: {
+    prototype: HTMLIdTooltipElement;
+    new (): HTMLIdTooltipElement;
+  };
+  interface HTMLElementTagNameMap {
+    'id-tooltip': HTMLIdTooltipElement;
+  }
+  interface ElementTagNameMap {
+    'id-tooltip': HTMLIdTooltipElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'id-tooltip': JSXElements.IdTooltipAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface IdTooltipAttributes extends HTMLAttributes {
+      'text'?: string;
+    }
+  }
+}
+
 declare global { namespace JSX { interface StencilJSX {} } }
 
 export declare function defineCustomElements(window: any): void;

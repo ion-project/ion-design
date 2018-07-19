@@ -1,6 +1,11 @@
 // Variables
 
 :root{
+    // Typography
+
+    --id-typography-button: 0.875rem;
+    --id-typography-caption: 0.75rem;
+
     // Elevations
 
     --id-elevation-2dp: 0 2px 4px rgba(0, 0, 0, 0.24);
@@ -15,6 +20,10 @@
     --id-motion-easing-standart: cubic-bezier(0.4, 0.0, 0.2, 1);
     --id-motion-easing-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
     --id-motion-easing-accelerate: cubic-bezier(0.4, 0.0, 1, 1);
+
+    // Border radius
+
+    --id-border-radius: 4px;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500');

@@ -6,14 +6,12 @@ import { Component, Prop } from '@stencil/core';
 })
 export class Button {
 
-  @Prop() type: 'text' | 'outlined' | 'contained';
+  @Prop() type: 'text' | 'outlined' | 'contained' = 'contained';
 
-  hostData() {
-    let className = this.type ? this.type : 'contained';
-    
+  hostData() {    
     return {
       class: {
-        [className]: true
+        [this.type]: true
       }
     };
   }

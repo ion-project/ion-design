@@ -42,15 +42,8 @@ export class Tooltip {
 
     for(let i = 0; i < tooltipList.length; i = i + 1){
       tooltipList[i].classList.add('inactive');
-    }
-  }
 
-  @Listen('window:transitionend')
-  removeTooltip(e) {
-    if(e.target.classList.contains('tooltip')){
-      e.target.remove();
-
-      this.showingTooltip = false;
+      this.removeTooltip(tooltipList[i]);
     }
   }
 
@@ -70,7 +63,17 @@ export class Tooltip {
 
     this.tooltipEndTimeout = setTimeout(() => {
       tooltip.classList.add('inactive');
+
+      this.removeTooltip(tooltip);
     }, 1500);
+  }
+
+  removeTooltip(tooltip: Element) {
+    setTimeout(() => {
+      tooltip.remove();
+
+      this.showingTooltip = false;
+    }, 75);
   }
 
   render() {

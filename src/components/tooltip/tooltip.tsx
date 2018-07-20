@@ -13,6 +13,7 @@ export class Tooltip {
 
   @Prop({context: 'enableListener'}) enableListener: EventListenerEnable;
   @Prop() text: string;
+  @Prop() position: 'top' | 'right' | 'bottom' | 'left' = 'bottom';
 
   componentWillLoad() {
     let isTouch = ('ontouchstart' in window);
@@ -48,16 +49,19 @@ export class Tooltip {
   }
 
   addTooltip() {
-    const RECT = this.el.parentElement.getBoundingClientRect();
-
+    let position
     let tooltip = document.createElement('span');
 
     tooltip.textContent = this.text;
-    tooltip.style.top = RECT.top + RECT.height + 'px';
-    tooltip.style.left = RECT.left + RECT.width + 'px';
     tooltip.classList.add('tooltip');
+    tooltip.classList.add(this.position);
 
     document.body.appendChild(tooltip);
+
+    position = this.getTooltipPosition(tooltip);
+
+    tooltip.style.top = position.top + 'px';
+    tooltip.style.left = position.left + 'px';
 
     this.showingTooltip = true;
 
@@ -66,6 +70,36 @@ export class Tooltip {
 
       this.removeTooltip(tooltip);
     }, 1500);
+  }
+
+  getTooltipPosition(tooltip: HTMLElement) {
+    const RECT = this.el.parentElement.getBoundingClientRect();
+
+    let position = {
+      top: 0,
+      left: 0
+    }
+
+    switch(this.position){
+      case 'bottom':
+        position.top = RECT.top + RECT.height;
+        position.left = RECT.left + (RECT.width / 2) - (tooltip.offsetWidth / 2);
+      break;
+      case 'left':
+        position.top = RECT.top + (RECT.height / 2) - (tooltip.offsetHeight / 2);
+        position.left = RECT.left - tooltip.offsetWidth;
+      break;
+      case 'right':
+        position.top = RECT.top + (RECT.height / 2) - (tooltip.offsetHeight / 2);
+        position.left = RECT.left + RECT.width;
+      break;
+      case 'top':
+        position.top = RECT.top - tooltip.offsetHeight;
+        position.left = RECT.left + (RECT.width / 2) - (tooltip.offsetWidth / 2);
+      break;
+    }
+
+    return position;
   }
 
   removeTooltip(tooltip: Element) {

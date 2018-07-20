@@ -96,6 +96,7 @@ declare global {
 
   namespace StencilComponents {
     interface IdTooltip {
+      'position': 'top' | 'right' | 'bottom' | 'left';
       'text': string;
     }
   }
@@ -119,6 +120,7 @@ declare global {
   }
   namespace JSXElements {
     export interface IdTooltipAttributes extends HTMLAttributes {
+      'position'?: 'top' | 'right' | 'bottom' | 'left';
       'text'?: string;
     }
   }

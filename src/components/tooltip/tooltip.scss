@@ -1,6 +1,5 @@
 .tooltip{
   position: fixed;
-  margin: 8px;
   padding: 4px 8px;
   font-size: var(--id-typography-caption);
   border-radius: var(--id-border-radius);
@@ -8,6 +7,14 @@
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 75ms var(--id-motion-easing-accelerate);
   animation: tooltip-enter 150ms var(--id-motion-easing-decelerate);
+
+  &.top, &.bottom{
+    margin: 8px 0;
+  }
+
+  &.left, &.right{
+    margin: 0 8px;
+  }
 
   &.inactive{
     opacity: 0;

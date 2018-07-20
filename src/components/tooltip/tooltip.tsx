@@ -6,6 +6,7 @@ import { Component, Element, Prop, EventListenerEnable, Listen } from '@stencil/
 })
 export class Tooltip {
 
+  showingTooltip: boolean = false;
   tooltipEndTimeout: any;
 
   @Element() el: HTMLElement;
@@ -18,16 +19,22 @@ export class Tooltip {
 
     this.enableListener(this, 'mouseover', !isTouch, 'parent');
     this.enableListener(this, 'mouseout', true, 'parent');
+    this.enableListener(this, 'focus', true, 'parent');
+    this.enableListener(this, 'blur', true, 'parent');
     this.enableListener(this, 'contextmenu', isTouch, 'parent');
   }
 
   @Listen('mouseover')
+  @Listen('focus')
   @Listen('contextmenu')
   tooltipStart() {
-    this.addTooltip();
+    if(!this.showingTooltip){
+      this.addTooltip();
+    }
   }
 
   @Listen('mouseout')
+  @Listen('blur')
   tooltipEnd() {
     clearTimeout(this.tooltipEndTimeout);
 
@@ -42,6 +49,8 @@ export class Tooltip {
   removeTooltip(e) {
     if(e.target.classList.contains('tooltip')){
       e.target.remove();
+
+      this.showingTooltip = false;
     }
   }
 
@@ -56,6 +65,8 @@ export class Tooltip {
     tooltip.classList.add('tooltip');
 
     document.body.appendChild(tooltip);
+
+    this.showingTooltip = true;
 
     this.tooltipEndTimeout = setTimeout(() => {
       tooltip.classList.add('inactive');

@@ -31,11 +31,11 @@ id-button{
 
   &.contained{
     button, a{
-      box-shadow: var(--id-elevation-2dp);
-      transition: box-shadow var(--id-motion-duration-simple) var(--id-motion-easing-standart);
+      box-shadow: var(--elevation-2dp);
+      transition: box-shadow var(--motion-duration-simple) var(--motion-easing-standart);
 
       &:active{
-        box-shadow: var(--id-elevation-8dp);
+        box-shadow: var(--elevation-8dp);
       }
     }
   }
@@ -43,10 +43,10 @@ id-button{
   button, a{
     height: 36px;
     overflow: hidden;
-    border-radius: var(--id-border-radius);
+    border-radius: var(--border-radius);
     position: relative;
     font-weight: 500;
-    font-size: var(--id-typography-button);
+    font-size: var(--typography-button);
     user-select: none;
     text-transform: uppercase;
   }

@@ -3,27 +3,27 @@
 :root{
     // Typography
 
-    --id-typography-button: 0.875rem;
-    --id-typography-caption: 0.75rem;
+    --typography-button: 0.875rem;
+    --typography-caption: 0.75rem;
 
     // Elevations
 
-    --id-elevation-2dp: 0 2px 4px rgba(0, 0, 0, 0.24);
-    --id-elevation-8dp: 0 8px 16px rgba(0, 0, 0, 0.24), 0 0 16px rgba(0, 0, 0, 0.3);
+    --elevation-2dp: 0 2px 4px rgba(0, 0, 0, 0.24);
+    --elevation-8dp: 0 8px 16px rgba(0, 0, 0, 0.24), 0 0 16px rgba(0, 0, 0, 0.3);
 
     // Motion duration
 
-    --id-motion-duration-simple: 100ms;
+    --motion-duration-simple: 100ms;
     
     // Motion easing
 
-    --id-motion-easing-standart: cubic-bezier(0.4, 0.0, 0.2, 1);
-    --id-motion-easing-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
-    --id-motion-easing-accelerate: cubic-bezier(0.4, 0.0, 1, 1);
+    --motion-easing-standart: cubic-bezier(0.4, 0.0, 0.2, 1);
+    --motion-easing-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
+    --motion-easing-accelerate: cubic-bezier(0.4, 0.0, 1, 1);
 
     // Border radius
 
-    --id-border-radius: 4px;
+    --border-radius: 4px;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500');

@@ -120,6 +120,22 @@ export class Tooltip {
       break;
     }
 
+    if(position.top + tooltip.offsetHeight > window.innerHeight){
+      position.top = RECT.top + RECT.height - tooltip.offsetHeight;
+    }
+
+    if(position.top < 0){
+      position.top = RECT.top;
+    }
+
+    if(position.left + tooltip.offsetWidth > window.innerWidth){
+      position.left = RECT.left + RECT.width - tooltip.offsetWidth;
+    }
+
+    if(position.left < 0){
+      position.left = RECT.left;
+    }
+
     return position;
   }
 

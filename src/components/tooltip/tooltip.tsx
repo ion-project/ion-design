@@ -11,7 +11,7 @@ export class Tooltip {
 
   @Element() el: HTMLElement;
 
-  @Prop({context: 'enableListener'}) enableListener: EventListenerEnable;
+  @Prop({ context: 'enableListener' }) enableListener: EventListenerEnable;
   @Prop() text: string;
   @Prop() position: 'top' | 'right' | 'bottom' | 'left' = 'bottom';
   @Prop() margin: number = 8;

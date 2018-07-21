@@ -8,7 +8,7 @@ export class Ripple {
 
   @Element() el: HTMLElement;
 
-  @Prop({context: 'enableListener'}) enableListener: EventListenerEnable;
+  @Prop({ context: 'enableListener' }) enableListener: EventListenerEnable;
 
   componentWillLoad() {
     let isTouch = ('ontouchstart' in window);

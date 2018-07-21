@@ -8,14 +8,6 @@
   transition: opacity 75ms var(--id-motion-easing-accelerate);
   animation: tooltip-enter 150ms var(--id-motion-easing-decelerate);
 
-  &.top, &.bottom{
-    margin: 8px 0;
-  }
-
-  &.left, &.right{
-    margin: 0 8px;
-  }
-
   &.inactive{
     opacity: 0;
   }

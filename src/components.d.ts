@@ -96,6 +96,7 @@ declare global {
 
   namespace StencilComponents {
     interface IdTooltip {
+      'margin': number;
       'position': 'top' | 'right' | 'bottom' | 'left';
       'text': string;
     }
@@ -120,6 +121,7 @@ declare global {
   }
   namespace JSXElements {
     export interface IdTooltipAttributes extends HTMLAttributes {
+      'margin'?: number;
       'position'?: 'top' | 'right' | 'bottom' | 'left';
       'text'?: string;
     }

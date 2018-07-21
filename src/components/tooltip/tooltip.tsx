@@ -14,6 +14,7 @@ export class Tooltip {
   @Prop({context: 'enableListener'}) enableListener: EventListenerEnable;
   @Prop() text: string;
   @Prop() position: 'top' | 'right' | 'bottom' | 'left' = 'bottom';
+  @Prop() margin: number = 8;
 
   componentWillLoad() {
     let isTouch = ('ontouchstart' in window);
@@ -82,20 +83,40 @@ export class Tooltip {
 
     switch(this.position){
       case 'bottom':
-        position.top = RECT.top + RECT.height;
-        position.left = RECT.left + (RECT.width / 2) - (tooltip.offsetWidth / 2);
+        position.top = RECT.top + RECT.height + this.margin;
+        position.left = RECT.left + RECT.width / 2 - tooltip.offsetWidth / 2;
+
+        if(position.top > window.innerHeight){
+          position.top = RECT.top + RECT.height - tooltip.offsetHeight;
+          position.left = (RECT.left + RECT.width / 2 < window.innerWidth / 2) ? RECT.left + RECT.width + this.margin : RECT.left - RECT.width - this.margin;
+        }
       break;
       case 'left':
-        position.top = RECT.top + (RECT.height / 2) - (tooltip.offsetHeight / 2);
-        position.left = RECT.left - tooltip.offsetWidth;
+        position.top = RECT.top + RECT.height / 2 - tooltip.offsetHeight / 2;
+        position.left = RECT.left - tooltip.offsetWidth - this.margin;
+
+        if(position.left < 0){
+          position.top = (RECT.top + RECT.height / 2 < window.innerHeight / 2) ? RECT.top + RECT.height + this.margin : RECT.top - tooltip.offsetHeight - this.margin;
+          position.left = RECT.left;
+        }
       break;
       case 'right':
-        position.top = RECT.top + (RECT.height / 2) - (tooltip.offsetHeight / 2);
-        position.left = RECT.left + RECT.width;
+        position.top = RECT.top + RECT.height / 2 - tooltip.offsetHeight / 2;
+        position.left = RECT.left + RECT.width + this.margin;
+
+        if(position.left > window.innerWidth){
+          position.top = (RECT.top + RECT.height / 2 < window.innerHeight / 2) ? RECT.top + RECT.height + this.margin : RECT.top - RECT.height - this.margin;
+          position.left = RECT.left + RECT.width - tooltip.offsetWidth;
+        }
       break;
       case 'top':
-        position.top = RECT.top - tooltip.offsetHeight;
-        position.left = RECT.left + (RECT.width / 2) - (tooltip.offsetWidth / 2);
+        position.top = RECT.top - tooltip.offsetHeight - this.margin;
+        position.left = RECT.left + RECT.width / 2 - tooltip.offsetWidth / 2;
+
+        if(position.top < 0){
+          position.top = RECT.top;
+          position.left = (RECT.left + RECT.width / 2 < window.innerWidth / 2) ? RECT.left + RECT.width + this.margin : RECT.left - tooltip.offsetWidth - this.margin;
+        }
       break;
     }
 

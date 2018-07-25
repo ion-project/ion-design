@@ -1,0 +1,16 @@
+// Elevation
+
+%elevation-2dp{
+    z-index: 2;
+    box-shadow: var(--elevation-2dp);
+}
+
+%elevation-4dp{
+    z-index: 4;
+    box-shadow: var(--elevation-4dp);
+}
+
+%elevation-8dp{
+    z-index: 8;
+    box-shadow: var(--elevation-8dp);
+}

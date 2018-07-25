@@ -1,3 +1,5 @@
+@import '../../themes/extends.scss';
+
 id-button{
   &.text, &.outlined{
     button, a{
@@ -31,11 +33,12 @@ id-button{
 
   &.contained{
     button, a{
-      box-shadow: var(--elevation-2dp);
+      @extend %elevation-2dp;
+
       transition: box-shadow var(--motion-duration-simple) var(--motion-easing-standart);
 
       &:active{
-        box-shadow: var(--elevation-8dp);
+        @extend %elevation-8dp;
       }
     }
   }

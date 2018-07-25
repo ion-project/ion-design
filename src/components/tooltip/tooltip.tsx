@@ -26,9 +26,9 @@ export class Tooltip {
     this.enableListener(this, 'contextmenu', isTouch, 'parent');
   }
 
-  @Listen('mouseover')
+  @Listen('mouseover', {enabled: false})
   @Listen('focus')
-  @Listen('contextmenu')
+  @Listen('contextmenu', {enabled: false})
   tooltipStart() {
     if(!this.showingTooltip){
       this.addTooltip();

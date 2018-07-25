@@ -15,22 +15,22 @@ export class Ripple {
 
     this.enableListener(this, 'mousedown', !isTouch, 'parent');
     this.enableListener(this, 'mouseup', !isTouch, 'parent');
-    this.enableListener(this, 'touchstart', true, 'parent');
-    this.enableListener(this, 'touchend', true, 'parent');
+    this.enableListener(this, 'touchstart', isTouch, 'parent');
+    this.enableListener(this, 'touchend', isTouch, 'parent');
   }
 
-  @Listen('mousedown')
+  @Listen('mousedown', {enabled: false})
   rippleStartMouse(e: MouseEvent) {
     this.addRipple(e.pageX, e.pageY);
   }
 
-  @Listen('touchstart')
+  @Listen('touchstart', {enabled: false})
   rippleStartTouch(e: TouchEvent) {
     this.addRipple(e.touches[0].pageX, e.touches[0].pageY);
   }
 
   @Listen('window:mouseup')
-  @Listen('touchend')
+  @Listen('touchend', {enabled: false})
   rippleEnd() {
     let rippleList = this.el.getElementsByClassName('ripple-effect');
 

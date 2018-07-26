@@ -29,6 +29,39 @@ declare global {
 declare global {
 
   namespace StencilComponents {
+    interface IdAppBar {
+      'type': 'scrolling' | 'fixed';
+    }
+  }
+
+  interface HTMLIdAppBarElement extends StencilComponents.IdAppBar, HTMLStencilElement {}
+
+  var HTMLIdAppBarElement: {
+    prototype: HTMLIdAppBarElement;
+    new (): HTMLIdAppBarElement;
+  };
+  interface HTMLElementTagNameMap {
+    'id-app-bar': HTMLIdAppBarElement;
+  }
+  interface ElementTagNameMap {
+    'id-app-bar': HTMLIdAppBarElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'id-app-bar': JSXElements.IdAppBarAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface IdAppBarAttributes extends HTMLAttributes {
+      'type'?: 'scrolling' | 'fixed';
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
     interface IdButton {
       'type': 'text' | 'outlined' | 'contained';
     }

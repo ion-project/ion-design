@@ -1,0 +1,56 @@
+@import '../../themes/extends.scss';
+
+id-button{
+  &.text, &.outlined{
+    button, a{
+      background-color: transparent;
+    }
+  }
+
+  &.text, &.contained{
+    button, a{
+      border: none;
+    }
+  }
+
+  &.outlined, &.contained{
+    button, a{
+      padding: 0 16px;
+    }
+  }
+
+  &.text{
+    button, a{
+      padding: 0 8px;
+    }
+  }
+
+  &.outlined{
+    button, a{
+      border: 1px solid rgba(0, 0, 0, 0.54);
+    }
+  }
+
+  &.contained{
+    button, a{
+      @extend %elevation-2dp;
+
+      transition: box-shadow var(--motion-duration-simple) var(--motion-easing-standart);
+
+      &:active{
+        @extend %elevation-8dp;
+      }
+    }
+  }
+
+  button, a{
+    height: 36px;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    position: relative;
+    font-weight: 500;
+    font-size: var(--typography-button);
+    user-select: none;
+    text-transform: uppercase;
+  }
+}

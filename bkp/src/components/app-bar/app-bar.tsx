@@ -36,8 +36,8 @@ export class AppBar {
       this.scrollEndDown = window.scrollY;
     }
     else{
-      if(this.topDown + this.scrollEndDown - window.scrollY < 0){
-        this.el.style.top = this.topDown + this.scrollEndDown - window.scrollY + 'px';
+      if(this.topDown + this.shadowHeight + this.scrollEndDown - window.scrollY < 0){
+        this.el.style.top = this.topDown + this.shadowHeight + this.scrollEndDown - window.scrollY + 'px';
       }
       else{
         this.el.style.top = '0px';

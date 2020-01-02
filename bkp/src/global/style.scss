@@ -1,0 +1,10 @@
+@import '../themes/variables.scss';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500');
+
+// Global component styles
+
+body, button, input{
+    color: rgba(0, 0, 0, 0.87);
+    font-family: 'Roboto', sans-serif;
+}

@@ -1,48 +1,25 @@
 {
   "name": "ion-design",
-  "version": "0.0.1",
-  "description": "The fast, lightweight and beautiful framework inspired by Material Design",
+  "version": "0.1.0",
+  "description": "Stencil Component Starter",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
+  "unpkg": "dist/ionic.js",
   "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "files": [
     "dist/"
   ],
   "scripts": {
-    "build": "stencil build",
+    "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
-    "test": "jest",
-    "test.watch": "jest --watch"
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll"
   },
   "dependencies": {},
   "devDependencies": {
-    "@stencil/core": "^0.10.10",
-    "@stencil/sass": "0.0.5",
-    "@types/jest": "^21.1.1",
-    "jest": "^21.2.1"
+    "@stencil/core": "^0.16.4",
+    "@stencil/sass": "^0.2.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ion-project/ion-design.git"
-  },
-  "author": "Ionic Team",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ion-project/ion-design/issues"
-  },
-  "homepage": "https://github.com/ion-project/ion-design",
-  "jest": {
-    "transform": {
-      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/@stencil/core/testing/jest.preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(tsx?|jsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "json",
-      "jsx"
-    ]
-  }
+  "license": "MIT"
 }

@@ -1,15 +1,16 @@
-const sass = require('@stencil/sass');
+import { Config } from '@stencil/core';
+import { sass } from '@stencil/sass';
 
-exports.config = {
+export const config: Config = {
   namespace: 'ion-design',
   globalStyle: 'src/global/style.scss',
-  outputTargets: [
+  outputTargets:[
     {
       type: 'dist'
     },
     {
       type: 'www',
-      serviceWorker: false
+      serviceWorker: null
     }
   ],
   plugins: [

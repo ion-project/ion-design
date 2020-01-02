@@ -1,0 +1,20 @@
+.ripple-effect{
+  opacity: 0.2;
+  border-radius: 50%;
+  position: absolute;
+  transform: scale(0.5);
+  pointer-events: none;
+  will-change: transform opacity;
+  background-color: currentColor;
+  transition: transform 1500ms var(--motion-easing-decelerate),
+              opacity 1500ms var(--motion-easing-decelerate);
+
+  &.active{
+    transform: scale(3);
+  }
+
+  &.inactive{
+    opacity: 0;
+    transform: scale(3.5);
+  }
+}
